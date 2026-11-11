@@ -141,6 +141,32 @@ sections.append({
     "title": "Circular 2026090000180 · Resolución 0234 de 2026",
     "html": to_html(circular_md),
 })
+# ---------------------------------------------------------------- respuestas rápidas
+rapidas_md = """
+Las preguntas que más se hacen, con la respuesta corta. Toca una para ver el detalle completo.
+
+| Pregunta | Respuesta |
+|---|---|
+| **¿Cuánto cloro debe tener el agua?** | **2 a 4 ppm** de cloro libre residual en operación normal |
+| **¿Cada cuánto debe recircular el agua?** | **6 a 8 h** abierta al público · **4 a 6 h** uso restringido · **4 h** propiedad privada (el examen final dice «cada 4 horas» para uso público) |
+| **¿Cómo se calcula el volumen?** | Rectangular: **largo × ancho × profundidad media**. Circular: **π × r² × h** (0,785 × D² × h) |
+| **¿Profundidad máxima?** | Infantil **0,60 m** · uso público y recreativo **1,50 m** |
+| **¿Cuántos intentos tengo?** | Talleres: **3** (cuenta la nota más alta) · Examen final: **2** · Se aprueba con **4,00/5,00** |
+| **¿Qué significa el sello?** | **0–16 verde** (favorable) · **16,1–49,5 amarillo** (favorable condicionado) · **≥ 49,6 rojo** (desfavorable) |
+| **¿Dosis de choque por materia fecal?** | Sólida: **9 ppm**, 8 h de contacto, 24 h cerrada · Líquida: **20 ppm**, 13 h, 48 h cerrada |
+| **¿De cuánto es la multa?** | **50 a 1.000 SMMLV** y cierre temporal hasta **5 días** en la primera falta |
+| **¿Qué botiquín necesito?** | **A** si la superficie es < 2.000 m² · **B** entre 2.000 y 15.000 m² · **C** (dos tipo B) si supera 15.000 m² |
+| **¿Cuánto dura el curso?** | La certificación tiene **vigencia de 3 años** |
+| **¿Ya cambió el acta por la Resolución 0234 de 2026?** | **Todavía no**: transitoriamente sigue la Resolución 2018060366702 de 2018 |
+"""
+
+sections.insert(0, {
+    "id": "respuestas-rapidas",
+    "cat": "referencia",
+    "title": "Respuestas rápidas · las preguntas de siempre",
+    "html": to_html(rapidas_md),
+})
+
 # la circular va arriba, después de normativa
 orden = {"normativa": 0, "circular": 1}
 sections.sort(key=lambda s: orden.get(s["cat"], 5))

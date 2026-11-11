@@ -550,6 +550,8 @@ footer b{color:var(--dim)}
 
   /* ---------- arranque ---------- */
   buscar("");
+  const rapida = byId.get("respuestas-rapidas");
+  if (rapida) setOpen(rapida, true);
   if (location.hash) {
     const c = byId.get(location.hash.slice(1));
     if (c) { setOpen(c, true); setTimeout(() => c.scrollIntoView({ block: "start" }), 80); }

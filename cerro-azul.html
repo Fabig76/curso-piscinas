@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Piscina Cerro Azul · ficha técnica y auditoría</title>
+<meta name="description" content="Ficha técnica de la piscina de Cerro Azul (planta MT3-010): áreas, profundidades, volúmenes, caudales de recirculación y calculadora de auditoría diaria para el piscinero.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏊</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070b16; --bg2:#0c1224; --card:#111a2e; --card2:#0e1628; --line:#22304d;
+  --txt:#e8eefc; --dim:#9db0d0; --dim2:#6f83a6;
+  --acc:#38bdf8; --acc2:#22d3ee; --ok:#34d399; --warn:#fbbf24; --bad:#f87171; --vio:#a78bfa;
+  --shadow:0 18px 50px rgba(0,0,0,.45); --r:18px;
+}
+html[data-theme="light"]{
+  --bg:#f4f7fc; --bg2:#eaf0fa; --card:#fff; --card2:#f7f9fd; --line:#dbe4f2;
+  --txt:#0f172a; --dim:#4b5f80; --dim2:#7386a4; --shadow:0 14px 40px rgba(15,23,42,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:120px}
+body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.font-d{font-family:"Space Grotesk",Inter,system-ui,sans-serif;letter-spacing:-.02em}
+a{color:var(--acc);text-underline-offset:3px}
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.bg span{position:absolute;border-radius:50%;filter:blur(90px);opacity:.45;animation:float 24s ease-in-out infinite}
+.bg .a{width:46vw;height:46vw;left:-10vw;top:-16vw;background:radial-gradient(circle,#0ea5e9,transparent 65%)}
+.bg .b{width:40vw;height:40vw;right:-8vw;top:2vh;background:radial-gradient(circle,#7c3aed,transparent 65%);animation-delay:-8s}
+.bg .c{width:34vw;height:34vw;left:38vw;top:60vh;background:radial-gradient(circle,#06b6d4,transparent 65%);animation-delay:-15s}
+html[data-theme="light"] .bg span{opacity:.26}
+@keyframes float{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(3vw,-2vw,0) scale(1.07)}}
+.wrap{max-width:1240px;margin:0 auto;padding:0 22px}
+
+/* barra superior */
+.topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 82%,transparent);border-bottom:1px solid var(--line)}
+.topbar .in{display:flex;align-items:center;gap:14px;padding:11px 0}
+.crumb{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--dim);text-decoration:none}
+.crumb:hover{color:var(--txt)}
+.brand{font-family:"Space Grotesk",sans-serif;font-weight:600;font-size:14.5px}
+.spacer{flex:1}
+.iconbtn{border:1px solid var(--line);background:var(--card2);color:var(--dim);cursor:pointer;width:38px;height:38px;border-radius:11px;display:grid;place-items:center;transition:.18s}
+.iconbtn:hover{color:var(--txt);border-color:var(--acc);transform:translateY(-1px)}
+
+/* hero */
+header.hero{padding:40px 0 18px}
+.kicker{display:inline-flex;gap:9px;align-items:center;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--acc2);background:rgba(34,211,238,.10);border:1px solid rgba(34,211,238,.28);padding:7px 13px;border-radius:999px}
+.hero h1{font-size:clamp(28px,4.2vw,46px);line-height:1.05;margin:16px 0 10px}
+.hero h1 em{font-style:normal;background:linear-gradient(100deg,var(--acc),var(--vio) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--dim);max-width:820px;margin:0 0 18px;font-size:17px}
+.stats{display:flex;flex-wrap:wrap;gap:10px}
+.stat{display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);padding:9px 14px;border-radius:14px;font-size:13.5px;color:var(--dim)}
+.stat b{color:var(--txt);font-size:15px;font-family:"Space Grotesk",sans-serif}
+
+/* pestañas */
+.tabs{position:sticky;top:60px;z-index:40;display:flex;gap:6px;padding:12px 0;overflow-x:auto;background:none}
+.tabs::before{content:"";position:absolute;inset:0;left:50%;width:100vw;transform:translateX(-50%);z-index:-1;
+  background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.tab{border:1px solid var(--line);background:var(--card2);color:var(--dim);font:500 14px/1 Inter,sans-serif;padding:11px 16px;border-radius:12px;cursor:pointer;white-space:nowrap;transition:.18s}
+.tab:hover{color:var(--txt);border-color:var(--acc)}
+.tab[aria-selected="true"]{background:linear-gradient(100deg,rgba(56,189,248,.20),rgba(167,139,250,.18));color:var(--txt);border-color:rgba(56,189,248,.55)}
+.panel{display:none;padding:10px 0 70px}
+.panel.activo{display:block;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* tarjetas */
+.card{background:linear-gradient(180deg,var(--card),var(--card2));border:1px solid var(--line);border-radius:var(--r);padding:22px;margin:0 0 16px;box-shadow:0 6px 22px rgba(0,0,0,.14)}
+.card h3{margin:0 0 12px;font-size:16px;color:var(--acc2)}
+.card h4{margin:18px 0 8px;font-size:14.5px;color:var(--txt)}
+.grid{display:grid;gap:14px}
+.g4{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.pool{background:var(--card2);border:1px solid var(--line);border-radius:16px;padding:18px;position:relative;overflow:hidden}
+.pool::before{content:"";position:absolute;inset:0 auto 0 0;width:3px;background:linear-gradient(var(--acc),var(--vio))}
+.pool h4{margin:0 0 4px;font-size:15.5px}
+.pool .sub{color:var(--dim2);font-size:12.5px;margin-bottom:10px}
+.pool dl{display:grid;grid-template-columns:1fr auto;gap:6px 10px;margin:0;font-size:13.8px}
+.pool dt{color:var(--dim)}
+.pool dd{margin:0;font-weight:600;font-family:"Space Grotesk",sans-serif}
+.big{font-size:26px;font-family:"Space Grotesk",sans-serif;letter-spacing:-.03em}
+.muted{color:var(--dim);font-size:13.5px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;padding:5px 9px;border-radius:999px;border:1px solid transparent}
+.p-ok{background:rgba(52,211,153,.14);color:#6ee7b7;border-color:rgba(52,211,153,.35)}
+.p-warn{background:rgba(251,191,36,.14);color:#fcd34d;border-color:rgba(251,191,36,.38)}
+.p-bad{background:rgba(248,113,113,.14);color:#fca5a5;border-color:rgba(248,113,113,.38)}
+.p-info{background:rgba(56,189,248,.13);color:#7dd3fc;border-color:rgba(56,189,248,.32)}
+html[data-theme="light"] .p-ok{color:#047857} html[data-theme="light"] .p-warn{color:#a16207}
+html[data-theme="light"] .p-bad{color:#b91c1c} html[data-theme="light"] .p-info{color:#0369a1}
+
+table{width:100%;border-collapse:collapse;font-size:14px;margin:10px 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+th{background:rgba(56,189,248,.08);font-weight:600;white-space:nowrap}
+tr:nth-child(even) td{background:rgba(148,163,184,.045)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums}
+
+/* formulario */
+.form{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.field{display:flex;flex-direction:column;gap:5px}
+.field label{font-size:12.5px;color:var(--dim)}
+.field label b{color:var(--txt);font-weight:600}
+.field input,.field select{background:var(--card2);border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:10px 11px;font:500 15px Inter,sans-serif;outline:none;transition:.15s}
+.field input:focus,.field select:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(56,189,248,.14)}
+.field .hint{font-size:11.5px;color:var(--dim2)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.btn{border:1px solid var(--line);background:var(--card2);color:var(--txt);font:600 14px Inter,sans-serif;padding:11px 18px;border-radius:11px;cursor:pointer;transition:.18s}
+.btn:hover{border-color:var(--acc);transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(100deg,rgba(56,189,248,.85),rgba(124,58,237,.85));border-color:transparent;color:#030712}
+.btn.ghost{background:none}
+.verdict{display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:16px;border:1px solid var(--line);margin:6px 0 16px}
+.verdict .ico{font-size:30px;line-height:1}
+.verdict h3{margin:0;font-size:18px;color:var(--txt)}
+.verdict p{margin:2px 0 0;color:var(--dim);font-size:14px}
+.v-ok{border-color:rgba(52,211,153,.5);background:rgba(52,211,153,.08)}
+.v-warn{border-color:rgba(251,191,36,.5);background:rgba(251,191,36,.08)}
+.v-bad{border-color:rgba(248,113,113,.5);background:rgba(248,113,113,.08)}
+
+/* plano */
+figure{margin:0}
+figure img{width:100%;border-radius:14px;border:1px solid var(--line);background:#fff;cursor:zoom-in}
+figcaption{color:var(--dim2);font-size:12.5px;margin-top:8px}
+dialog{border:0;padding:0;background:transparent;max-width:96vw;max-height:94vh}
+dialog img{max-width:96vw;max-height:92vh;border-radius:12px;background:#fff}
+dialog::backdrop{background:rgba(3,7,18,.86)}
+
+/* historial */
+.hist{font-size:13.5px}
+.hist .row{display:grid;grid-template-columns:120px 1fr auto auto;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.hist .row:last-child{border-bottom:0}
+.hist .date{color:var(--dim2);font-variant-numeric:tabular-nums}
+.empty{color:var(--dim2);font-size:13.5px;padding:8px 0}
+
+.toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);background:var(--card);border:1px solid var(--acc);color:var(--txt);padding:11px 16px;border-radius:12px;font-size:13.5px;opacity:0;transition:.25s;z-index:60;box-shadow:var(--shadow)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:700px){
+  .hero h1{font-size:clamp(24px,8vw,32px)}
+  .card{padding:16px}
+  .tabs{top:56px}
+  .hist .row{grid-template-columns:1fr auto}
+}
+@media print{
+  .topbar,.tabs,.actions,.bg,.toast,.noprint{display:none!important}
+  body{background:#fff;color:#000}
+  .panel{display:block!important}
+  .card{break-inside:avoid;border:1px solid #bbb;box-shadow:none}
+  .verdict{border:1px solid #999}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="bg"><span class="a"></span><span class="b"></span><span class="c"></span></div>
+
+<div class="topbar"><div class="wrap in">
+  <a class="crumb" href="index.html">← Guía del curso</a>
+  <span class="brand">Piscina Cerro Azul</span>
+  <span class="spacer"></span>
+  <button class="iconbtn" id="theme" aria-label="Cambiar tema" title="Cambiar tema">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M19.1 4.9l-1.4 1.4M6.3 17.7l-1.4 1.4"/></svg>
+  </button>
+</div></div>
+
+<div class="wrap">
+<header class="hero">
+  <span class="kicker">📐 Plano MT3-010 · Monserrate Arquitectura · 2013</span>
+  <h1>Piscina <em>Cerro Azul</em>: la ficha técnica y la auditoría</h1>
+  <p>Medidas reales del plano, los cálculos que se derivan de ellas y una calculadora para revisar
+     los datos del día con el piscinero: le das lo que midió y te dice si está dentro de lo que
+     técnicamente debe tener esta piscina.</p>
+  <div class="stats">
+    <span class="stat"><b>4</b> estanques</span>
+    <span class="stat"><b>239,30</b> m² de espejo</span>
+    <span class="stat"><b>281,06</b> m³ de agua</span>
+    <span class="stat"><b>92</b> bañistas de carga</span>
+  </div>
+</header>
+
+<div class="tabs" role="tablist">
+  <button class="tab" role="tab" aria-selected="true" data-tab="ficha">Ficha técnica</button>
+  <button class="tab" role="tab" aria-selected="false" data-tab="calculos">Cálculos de diseño</button>
+  <button class="tab" role="tab" aria-selected="false" data-tab="auditoria">Auditoría diaria</button>
+  <button class="tab" role="tab" aria-selected="false" data-tab="plano">Plano</button>
+</div>
+
+<!-- ============================ FICHA ============================ -->
+<section class="panel activo" id="panel-ficha">
+  <div class="grid g2">
+    <div class="pool">
+      <h4>Piscina de adultos · doble lóbulo</h4>
+      <div class="sub">Ala oriental del conjunto</div>
+      <dl>
+        <dt>Área</dt><dd>103,61 m²</dd>
+        <dt>Profundidad</dt><dd>1,30 m</dd>
+        <dt>Volumen</dt><dd>134,69 m³</dd>
+        <dt>Carga</dt><dd>78 personas (total adultos)</dd>
+      </dl>
+    </div>
+    <div class="pool">
+      <h4>Piscina de adultos · R3.50</h4>
+      <div class="sub">Ala occidental, junto al hidromasaje</div>
+      <dl>
+        <dt>Área</dt><dd>100,30 m²</dd>
+        <dt>Profundidad</dt><dd>1,30 m</dd>
+        <dt>Volumen</dt><dd>130,39 m³</dd>
+        <dt>Carga</dt><dd>78 personas (total adultos)</dd>
+      </dl>
+    </div>
+    <div class="pool">
+      <h4>Hidromasaje</h4>
+      <div class="sub">Estanque anexo de 5,2 m²</div>
+      <dl>
+        <dt>Área</dt><dd>5,20 m²</dd>
+        <dt>Profundidad</dt><dd>0,75 m</dd>
+        <dt>Volumen</dt><dd>3,90 m³</dd>
+        <dt>Carga</dt><dd>—</dd>
+      </dl>
+    </div>
+    <div class="pool">
+      <h4>Piscina de niños</h4>
+      <div class="sub">Radio 3,10 m · área 30,19 m²</div>
+      <dl>
+        <dt>Área</dt><dd>30,19 m²</dd>
+        <dt>Profundidad</dt><dd>0,40 m</dd>
+        <dt>Volumen</dt><dd>12,08 m³</dd>
+        <dt>Carga</dt><dd>14 niños</dd>
+      </dl>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <h3>Totales del sistema</h3>
+    <table>
+      <thead><tr><th>Concepto</th><th class="num">Adultos (2)</th><th class="num">Hidromasaje</th><th class="num">Niños</th><th class="num">Total</th></tr></thead>
+      <tbody>
+        <tr><td>Área de espejo</td><td class="num">203,91 m²</td><td class="num">5,20 m²</td><td class="num">30,19 m²</td><td class="num"><b>239,30 m²</b></td></tr>
+        <tr><td>Profundidad</td><td class="num">1,30 m</td><td class="num">0,75 m</td><td class="num">0,40 m</td><td class="num">—</td></tr>
+        <tr><td>Volumen</td><td class="num">265,08 m³</td><td class="num">3,90 m³</td><td class="num">12,08 m³</td><td class="num"><b>281,06 m³</b></td></tr>
+        <tr><td>Carga máxima</td><td class="num">78 personas</td><td class="num">—</td><td class="num">14 niños</td><td class="num"><b>92</b></td></tr>
+      </tbody>
+    </table>
+    <p class="muted">El plano rotula «AREA TOTAL: 209,12 m²» para el conjunto de adultos más hidromasaje
+      (103,61 + 100,30 + 5,20 = 209,11 m²). La piscina de niños se reporta aparte, con 30,19 m² y carga de 14 niños.</p>
+  </div>
+
+  <div class="grid g3">
+    <div class="card"><h3>Niveles del plano</h3>
+      <p class="muted">NPA (nivel de piso) 1.510,50 · 1.509,00 · 1.511,04 · 1.510,53 · 1.509,43 · 1.516,52 · 1.514,06 · 1.513,91 · 1.518,98.</p>
+      <p class="muted">Corresponden a los distintos andenes y al cuarto de máquinas; sirven para verificar
+        pendientes de drenaje y el sentido de escurrimiento hacia canaletas.</p></div>
+    <div class="card"><h3>Materiales</h3>
+      <p class="muted">Cerámica 25×25 cm, ref. 25705 blanca y ref. 915 azul cielo (Ticino ondulado);
+        bordes con rompeolas en grano lavado color traní; deck en tabla de 3 × 8,5 × 300 cm.</p></div>
+    <div class="card"><h3>Accesibilidad</h3>
+      <p class="muted">El plano incluye acceso para movilidad reducida, escalones en escalera y
+        peldaños de 30 × 30 cm en el acceso al estanque.</p></div>
+  </div>
+</section>
+
+<!-- ============================ CÁLCULOS ============================ -->
+<section class="panel" id="panel-calculos">
+  <div class="card">
+    <h3>Caudal de recirculación exigido</h3>
+    <p class="muted">El curso y el Decreto 780 de 2016 parten de que <b>todo el volumen debe pasar por el
+      filtro</b> en un periodo determinado: <b>6 a 8 horas</b> para instalaciones abiertas al público.
+      Con el volumen real de cada estanque, el caudal mínimo del equipo sale de dividir volumen entre tiempo.</p>
+    <table>
+      <thead><tr><th>Estanque</th><th class="num">Volumen</th><th class="num">Q a 8 h</th><th class="num">Q a 6 h</th><th class="num">Filtro a 20 m³/h·m²</th><th class="num">Filtro a 25 m³/h·m²</th></tr></thead>
+      <tbody>
+        <tr><td>Adultos · doble lóbulo</td><td class="num">134,69 m³</td><td class="num">16,84 m³/h</td><td class="num">22,45 m³/h</td><td class="num">1,12 m²</td><td class="num">0,90 m²</td></tr>
+        <tr><td>Adultos · R3.50</td><td class="num">130,39 m³</td><td class="num">16,30 m³/h</td><td class="num">21,73 m³/h</td><td class="num">1,09 m²</td><td class="num">0,87 m²</td></tr>
+        <tr><td>Hidromasaje</td><td class="num">3,90 m³</td><td class="num">0,49 m³/h</td><td class="num">0,65 m³/h</td><td class="num">0,03 m²</td><td class="num">0,03 m²</td></tr>
+        <tr><td>Niños</td><td class="num">12,08 m³</td><td class="num">1,51 m³/h</td><td class="num">2,01 m³/h</td><td class="num">0,10 m²</td><td class="num">0,08 m²</td></tr>
+        <tr><td><b>Total del sistema</b></td><td class="num"><b>281,06 m³</b></td><td class="num"><b>35,13 m³/h</b></td><td class="num"><b>46,84 m³/h</b></td><td class="num"><b>1,87 m²</b></td><td class="num"><b>1,41 m²</b></td></tr>
+      </tbody>
+    </table>
+    <p class="muted">Para la auditoría práctica: si el caudalímetro del cuarto de máquinas marca <b>entre
+      35 y 47 m³/h</b> con los cuatro estanques en servicio, la recirculación está en norma. Por debajo de
+      35 m³/h el agua no completa el ciclo en 8 horas; por encima de 47 trabaja con margen (revisar
+      velocidad de filtración y consumo).</p>
+    <div class="grid g4" style="margin-top:14px">
+      <div class="pool"><div class="sub">Bomba (estimación)</div><div class="big">≈ 4 HP</div><p class="muted" style="margin:6px 0 0">Con 47 m³/h y 15 m de altura manométrica (η 0,65): 2,96 kW ≈ 4 HP.</p></div>
+      <div class="pool"><div class="sub">Reposición de agua</div><div class="big">5,6–14,1 m³/d</div><p class="muted" style="margin:6px 0 0">2 % a 5 % del volumen al día (evaporación, arrastre y lavado de filtros).</p></div>
+      <div class="pool"><div class="sub">Cloro para +1 ppm</div><div class="big">432 g</div><p class="muted" style="margin:6px 0 0">Hipoclorito de calcio 65 %. Con hipoclorito de sodio 13 %: 2,16 kg (≈1,8 L).</p></div>
+      <div class="pool"><div class="sub">Choque a 9 ppm</div><div class="big">3,03 kg</div><p class="muted" style="margin:6px 0 0">Calcio 65 %, partiendo de 2 ppm (Δ 7 ppm en 281 m³).</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Fórmulas usadas</h3>
+    <table>
+      <thead><tr><th>Cálculo</th><th>Fórmula</th><th>Ejemplo con estos datos</th></tr></thead>
+      <tbody>
+        <tr><td>Volumen de un estanque</td><td>V = área × profundidad</td><td>103,61 × 1,30 = 134,69 m³</td></tr>
+        <tr><td>Caudal de recirculación</td><td>Q = V ÷ t</td><td>281,06 ÷ 8 = 35,13 m³/h</td></tr>
+        <tr><td>Periodo real (auditoría)</td><td>t = V ÷ Q medido</td><td>281,06 ÷ 40 = 7,03 h ✔</td></tr>
+        <tr><td>Área de filtración</td><td>A = Q ÷ v (20–25 m³/h·m²)</td><td>46,84 ÷ 25 = 1,87 m²</td></tr>
+        <tr><td>Cloro activo para subir X ppm</td><td>g = V × Δppm</td><td>281 × 1 = 281 g de cloro activo</td></tr>
+        <tr><td>Producto comercial</td><td>g producto = activo ÷ %</td><td>281 ÷ 0,65 = 432 g de calcio 65 %</td></tr>
+        <tr><td>Bicarbonato para subir alcalinidad</td><td>g = V × 1,68 × Δppm</td><td>281 × 1,68 × 10 = 4,72 kg</td></tr>
+        <tr><td>Índice de Langelier</td><td>LSI = pH − pHs (AWWA)</td><td>−0,3 a +0,3 = agua equilibrada</td></tr>
+      </tbody>
+    </table>
+    <p class="muted">Estimaciones de dosificación: sirven para ordenar la auditoría, no reemplazan la
+      ficha del fabricante ni la medición posterior. Toda corrección se hace con el estanque en
+      recirculación y se vuelve a medir a las 2 horas.</p>
+  </div>
+</section>
+
+<!-- ============================ AUDITORÍA ============================ -->
+<section class="panel" id="panel-auditoria">
+  <div class="verdict v-warn" id="veredicto">
+    <span class="ico">🧪</span>
+    <div><h3>Sin datos todavía</h3><p>Escribe los valores del día y el resultado se actualiza solo.</p></div>
+  </div>
+
+  <div class="card">
+    <h3>1 · Datos del día</h3>
+    <div class="form">
+      <div class="field"><label for="fecha">Fecha</label><input id="fecha" type="date"></div>
+      <div class="field"><label for="estanque">Estanque</label>
+        <select id="estanque">
+          <option value="281.06">Sistema completo (281,06 m³)</option>
+          <option value="134.69">Adultos · doble lóbulo (134,69 m³)</option>
+          <option value="130.39">Adultos · R3.50 (130,39 m³)</option>
+          <option value="12.08">Niños (12,08 m³)</option>
+          <option value="3.90">Hidromasaje (3,90 m³)</option>
+        </select></div>
+      <div class="field"><label for="cloro">Cloro libre <b>(ppm)</b></label><input id="cloro" type="number" step="0.1" min="0" placeholder="2,0"><span class="hint">Debe estar entre 2,0 y 4,0</span></div>
+      <div class="field"><label for="combinado">Cloro combinado <b>(ppm)</b></label><input id="combinado" type="number" step="0.05" min="0" placeholder="0,2"><span class="hint">Máximo 0,4</span></div>
+      <div class="field"><label for="ph">pH</label><input id="ph" type="number" step="0.05" min="0" max="14" placeholder="7,5"><span class="hint">Entre 7,2 y 7,8</span></div>
+      <div class="field"><label for="alcalinidad">Alcalinidad total <b>(ppm CaCO₃)</b></label><input id="alcalinidad" type="number" step="1" min="0" placeholder="100"><span class="hint">Entre 80 y 120</span></div>
+      <div class="field"><label for="dureza">Dureza cálcica <b>(ppm)</b></label><input id="dureza" type="number" step="1" min="0" placeholder="300"><span class="hint">Entre 200 y 400</span></div>
+      <div class="field"><label for="cianurico">Ácido cianúrico <b>(ppm)</b></label><input id="cianurico" type="number" step="1" min="0" placeholder="40"><span class="hint">Entre 30 y 50</span></div>
+      <div class="field"><label for="temperatura">Temperatura <b>(°C)</b></label><input id="temperatura" type="number" step="0.5" min="0" placeholder="28"><span class="hint">Entre 24 y 30</span></div>
+      <div class="field"><label for="turbiedad">Turbiedad <b>(NTU)</b></label><input id="turbiedad" type="number" step="0.1" min="0" placeholder="0,5"><span class="hint">Máximo 1,0</span></div>
+      <div class="field"><label for="tds">Sólidos disueltos <b>(ppm)</b></label><input id="tds" type="number" step="10" min="0" placeholder="800"><span class="hint">Máximo 1.500</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>2 · Operación del día</h3>
+    <div class="form">
+      <div class="field"><label for="caudal">Caudal medido <b>(m³/h)</b></label><input id="caudal" type="number" step="0.1" min="0" placeholder="40"><span class="hint">Lectura del caudalímetro</span></div>
+      <div class="field"><label for="horas">Horas de recirculación</label><input id="horas" type="number" step="0.5" min="0" placeholder="8"><span class="hint">Horas que estuvo la bomba</span></div>
+      <div class="field"><label for="banistas">Bañistas del día</label><input id="banistas" type="number" step="1" min="0" placeholder="45"></div>
+      <div class="field"><label for="filtroLavados">Lavados de filtro</label><input id="filtroLavados" type="number" step="1" min="0" placeholder="1"></div>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="evaluar">Evaluar</button>
+      <button class="btn" id="guardar">Guardar auditoría</button>
+      <button class="btn ghost" id="limpiar">Limpiar</button>
+      <button class="btn ghost" id="imprimir">Imprimir / PDF</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>3 · Comparación con lo que debe tener</h3>
+    <table id="tabla-resultados">
+      <thead><tr><th>Parámetro</th><th class="num">Medido</th><th class="num">Debe estar</th><th>Estado</th><th>Acción</th></tr></thead>
+      <tbody><tr><td colspan="5" class="muted">Sin datos.</td></tr></tbody>
+    </table>
+  </div>
+
+  <div class="grid g2">
+    <div class="card"><h3>Balance del agua (Langelier)</h3><div id="lsi">—</div></div>
+    <div class="card"><h3>Recirculación</h3><div id="recirc">—</div></div>
+  </div>
+
+  <div class="card">
+    <h3>Dosis sugeridas para dejar el agua en rango</h3>
+    <div id="dosis"><p class="muted">Escribe el cloro y el pH para calcular.</p></div>
+    <p class="muted" style="margin-top:10px">Referencias: hipoclorito de calcio 65 %, hipoclorito de sodio 13 %
+      (densidad 1,2 kg/L), ácido muriático 31 %, bicarbonato de sodio. Aplicar con recirculación activa,
+      nunca mezclar productos entre sí y volver a medir a las 2 horas.</p>
+  </div>
+
+  <div class="card">
+    <h3>Historial de auditorías <span class="muted" style="font-weight:400">(se guarda en este navegador)</span></h3>
+    <div class="hist" id="hist"><div class="empty">Todavía no hay auditorías guardadas.</div></div>
+    <div class="actions noprint">
+      <button class="btn ghost" id="csv">Exportar CSV</button>
+      <button class="btn ghost" id="borrarHist">Borrar historial</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PLANO ============================ -->
+<section class="panel" id="panel-plano">
+  <div class="card">
+    <h3>Plano de planta (MT3-010)</h3>
+    <figure>
+      <img src="img/planta-piscina.jpg" alt="Plano de planta de la piscina de Cerro Azul" data-zoom>
+      <figcaption>Planta general a escala 1:100. Toca la imagen para ampliarla. Incluye sección transversal,
+        detalles de rompeolas, banca y escalones.</figcaption>
+    </figure>
+  </div>
+  <div class="card">
+    <h3>Detalle de los estanques</h3>
+    <figure>
+      <img src="img/planta-detalle.jpg" alt="Detalle de las piscinas de adultos e infantil" data-zoom>
+      <figcaption>Piscina de adultos (103,61 m² · 1,30 m), piscina R3.50 (100,30 m² · 1,30 m),
+        hidromasaje (5,2 m² · 0,75 m) y piscina de niños (30,19 m² · 0,40 m).</figcaption>
+    </figure>
+  </div>
+</section>
+
+<footer style="border-top:1px solid var(--line);padding:24px 0 40px;color:var(--dim2);font-size:13px">
+  <p>Datos tomados del plano <b>MT3_010</b> (Monserrate Arquitectura y Urbanismo, proyecto «Zonas de piscina»,
+    curaduría CZ-028-2014, 2013). Los cálculos aplican el periodo de recirculación del curso de Alfa
+    Consultores y del Decreto 780 de 2016.</p>
+  <p>Herramienta de apoyo para la auditoría del piscinero. No sustituye el acta de la autoridad sanitaria
+    ni el concepto de un profesional.</p>
+</footer>
+</div>
+
+<dialog id="zoom"><img alt="Plano ampliado"></dialog>
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+"use strict";
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+const n = v => { const x = parseFloat(String(v ?? "").replace(",", ".")); return Number.isFinite(x) ? x : null; };
+const fmt = (x, d = 2) => x == null ? "—" : x.toLocaleString("es-CO", { minimumFractionDigits: d, maximumFractionDigits: d });
+
+/* ---------- pestañas ---------- */
+$$(".tab").forEach(t => t.addEventListener("click", () => {
+  $$(".tab").forEach(x => x.setAttribute("aria-selected", "false"));
+  t.setAttribute("aria-selected", "true");
+  $$(".panel").forEach(p => p.classList.remove("activo"));
+  $("#panel-" + t.dataset.tab).classList.add("activo");
+  scrollTo({ top: 0, behavior: "smooth" });
+}));
+
+/* ---------- tema ---------- */
+const setTheme = t => { document.documentElement.dataset.theme = t; try { localStorage.setItem("cz-tema", t); } catch {} };
+try { const g = localStorage.getItem("cz-tema"); if (g) setTheme(g); } catch {}
+$("#theme").addEventListener("click", () => setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark"));
+
+/* ---------- zoom del plano ---------- */
+const dlg = $("#zoom");
+$$("[data-zoom]").forEach(img => img.addEventListener("click", () => {
+  dlg.querySelector("img").src = img.src; dlg.showModal();
+}));
+dlg.addEventListener("click", () => dlg.close());
+
+/* ---------- referencias ---------- */
+const RANGOS = {
+  cloro:      { nombre: "Cloro libre residual", min: 2, max: 4, u: "ppm", critico: true,
+                bajo: "Subir cloro: revisar dosificación y hacer choque si está por debajo de 1 ppm.",
+                alto: "Dejar de dosificar y esperar; no abrir con más de 4 ppm." },
+  combinado:  { nombre: "Cloro combinado", min: 0, max: 0.4, u: "ppm",
+                alto: "Cloraminas altas: choque de cloro y revisar materia orgánica." },
+  ph:         { nombre: "pH", min: 7.2, max: 7.8, u: "", critico: true,
+                bajo: "Subir con carbonato de sodio; revisar alcalinidad.",
+                alto: "Bajar con ácido muriático en dosis pequeñas; revisar alcalinidad." },
+  alcalinidad:{ nombre: "Alcalinidad total", min: 80, max: 120, u: "ppm",
+                bajo: "Subir con bicarbonato de sodio (≈1,68 g por ppm y m³).",
+                alto: "Bajar con ácido y aireación; el pH se vuelve inestable." },
+  dureza:     { nombre: "Dureza cálcica", min: 200, max: 400, u: "ppm",
+                bajo: "Agua corrosiva: aportar calcio (cloruro de calcio).",
+                alto: "Riesgo de incrustación: revisar LSI y renovar parte del agua." },
+  cianurico:  { nombre: "Ácido cianúrico", min: 30, max: 50, u: "ppm",
+                bajo: "Poco estabilizante: el cloro se pierde con el sol.",
+                alto: "Sobre 75 ppm el cloro pierde eficacia: renovar agua." },
+  temperatura:{ nombre: "Temperatura", min: 24, max: 30, u: "°C" },
+  turbiedad:  { nombre: "Turbiedad", min: 0, max: 1, u: "NTU",
+                alto: "Filtrar y revisar lavado de filtros; si persiste, floculante." },
+  tds:        { nombre: "Sólidos disueltos", min: 0, max: 1500, u: "ppm",
+                alto: "Renovar parte del agua (dilución)." },
+};
+
+/* ---------- estado ---------- */
+let ultimo = null;
+
+function estado(v, r) {
+  if (v == null) return "sin";
+  if (v < r.min) return "bajo";
+  if (v > r.max) return "alto";
+  return "ok";
+}
+
+function lsi(pH, T, dureza, alcalinidad, tds) {
+  if ([pH, T, dureza, alcalinidad].some(x => x == null)) return null;
+  const A = (Math.log10(tds || 800) - 1) / 10;
+  const B = -13.12 * Math.log10(T + 273) + 34.55;
+  const C = Math.log10(dureza) - 0.4;
+  const D = Math.log10(alcalinidad);
+  const pHs = (9.3 + A + B) - (C + D);
+  return pH - pHs;
+}
+
+/* ---------- evaluación ---------- */
+function evaluar() {
+  const V = n($("#estanque").value) || 281.06;
+  const datos = {
+    cloro: n($("#cloro").value), combinado: n($("#combinado").value), ph: n($("#ph").value),
+    alcalinidad: n($("#alcalinidad").value), dureza: n($("#dureza").value),
+    cianurico: n($("#cianurico").value), temperatura: n($("#temperatura").value),
+    turbiedad: n($("#turbiedad").value), tds: n($("#tds").value),
+  };
+  const caudal = n($("#caudal").value), horas = n($("#horas").value);
+  const banistas = n($("#banistas").value), lavados = n($("#filtroLavados").value);
+
+  const filas = Object.entries(RANGOS).map(([k, r]) => {
+    const v = datos[k], e = estado(v, r);
+    let etiqueta = "—", clase = "p-info", accion = "";
+    if (e === "ok") { etiqueta = "✔ En rango"; clase = "p-ok"; }
+    else if (e === "bajo") { etiqueta = "↓ Bajo"; clase = "p-warn"; accion = r.bajo || "Revisar"; }
+    else if (e === "alto") { etiqueta = "↑ Alto"; clase = e === "alto" && r.critico ? "p-bad" : "p-warn"; accion = r.alto || "Revisar"; }
+    else { etiqueta = "Sin dato"; clase = "p-info"; }
+    return { k, r, v, e, etiqueta, clase, accion };
+  });
+
+  $("#tabla-resultados").querySelector("tbody").innerHTML = filas.map(f => `
+    <tr>
+      <td>${f.r.nombre}</td>
+      <td class="num">${f.v == null ? "—" : fmt(f.v, f.k === "ph" ? 2 : (f.k === "combinado" ? 2 : (f.k === "turbiedad" ? 1 : 0)))}</td>
+      <td class="num">${f.r.min} – ${f.r.max} ${f.r.u}</td>
+      <td><span class="pill ${f.clase}">${f.etiqueta}</span></td>
+      <td class="muted">${f.e === "ok" || f.e === "sin" ? "" : (f.accion || "")}</td>
+    </tr>`).join("");
+
+  /* balance */
+  const L = lsi(datos.ph, datos.temperatura, datos.dureza, datos.alcalinidad, datos.tds);
+  const lsiEl = $("#lsi");
+  if (L == null) lsiEl.innerHTML = `<p class="muted">Faltan pH, temperatura, dureza o alcalinidad para calcularlo.</p>`;
+  else {
+    const ok = L >= -0.3 && L <= 0.3;
+    lsiEl.innerHTML = `
+      <div class="big">${L > 0 ? "+" : ""}${fmt(L, 2)}</div>
+      <p class="muted">${ok ? "Agua equilibrada." : (L > 0.3 ? "Agua incrustante: tiende a sarro en paredes, filtros y resistencias." : "Agua corrosiva: ataca revoques, metal y juntas.")}</p>
+      <span class="pill ${ok ? "p-ok" : "p-warn"}">${ok ? "✔ Equilibrada" : (L > 0.3 ? "↑ Incrustante" : "↓ Corrosiva")}</span>`;
+  }
+
+  /* recirculación */
+  const re = $("#recirc");
+  const qReq8 = V / 8, qReq6 = V / 6;
+  let html = `<p>Volumen del estanque: <b>${fmt(V, 2)} m³</b>.</p>
+    <table style="margin:8px 0">
+      <thead><tr><th>Escenario</th><th class="num">Caudal</th><th class="num">Periodo</th><th>Estado</th></tr></thead><tbody>`;
+  if (caudal) {
+    const t = V / caudal;
+    const ok = t <= 8;
+    html += `<tr><td>Caudal medido</td><td class="num">${fmt(caudal, 1)} m³/h</td><td class="num">${fmt(t, 2)} h</td>
+      <td><span class="pill ${ok ? "p-ok" : "p-bad"}">${ok ? "✔ Cumple (≤ 8 h)" : "✖ No cumple"}</span></td></tr>`;
+  }
+  if (horas) {
+    const q = V / horas;
+    const ok = horas <= 8 && horas >= 6;
+    html += `<tr><td>Según horas de bomba</td><td class="num">${fmt(q, 1)} m³/h</td><td class="num">${fmt(horas, 1)} h</td>
+      <td><span class="pill ${ok ? "p-ok" : "p-warn"}">${ok ? "✔ En rango" : (horas < 6 ? "↓ Menos de 6 h" : "↑ Más de 8 h")}</span></td></tr>`;
+  }
+  html += `</tbody></table>
+    <p class="muted">Exigido: ${fmt(qReq8, 1)} m³/h para 8 h · ${fmt(qReq6, 1)} m³/h para 6 h.</p>`;
+  if (banistas) html += `<p class="muted">Carga del día: ${banistas} bañistas${lavados ? ` · ${lavados} lavado(s) de filtro` : ""}.</p>`;
+  re.innerHTML = html;
+
+  /* dosis */
+  const dos = [];
+  if (datos.cloro != null && datos.cloro < 2) {
+    const delta = 2.5 - datos.cloro;
+    const activo = V * delta;
+    dos.push(`<li><b>Subir cloro ${fmt(delta, 2)} ppm</b> (de ${fmt(datos.cloro, 2)} a 2,5 ppm): ${fmt(activo, 0)} g de cloro activo →
+      <b>${fmt(activo / 0.65, 0)} g</b> de hipoclorito de calcio 65 %, o <b>${fmt(activo / 0.13 / 1200, 2)} L</b> de hipoclorito de sodio 13 %.</li>`);
+  }
+  if (datos.cloro != null && datos.cloro > 4) {
+    dos.push(`<li><b>Cloro alto</b> (${fmt(datos.cloro, 2)} ppm): suspender dosificación y no permitir bañistas hasta bajar de 4 ppm.</li>`);
+  }
+  if (datos.combinado != null && datos.combinado > 0.4) {
+    dos.push(`<li><b>Cloraminas altas</b> (${fmt(datos.combinado, 2)} ppm): choque a 9 ppm = <b>${fmt(V * (9 - (datos.cloro || 2)) / 0.65, 0)} g</b> de calcio 65 %.</li>`);
+  }
+  if (datos.ph != null && datos.ph > 7.8) {
+    const d = datos.ph - 7.6;
+    dos.push(`<li><b>Bajar pH ${fmt(d, 1)}</b>: ≈ <b>${fmt(V / 100 * (d / 0.2), 1)} L</b> de ácido muriático 31 % (estimado con alcalinidad ${datos.alcalinidad ?? "—"} ppm). Añadir en 2 tandas.</li>`);
+  }
+  if (datos.ph != null && datos.ph < 7.2) {
+    const d = 7.4 - datos.ph;
+    dos.push(`<li><b>Subir pH ${fmt(d, 1)}</b>: ≈ <b>${fmt(V * 10 * (d / 0.1) / 1000, 1)} kg</b> de carbonato de sodio (10 g/m³ por 0,1 de pH).</li>`);
+  }
+  if (datos.alcalinidad != null && datos.alcalinidad < 80) {
+    const d = 100 - datos.alcalinidad;
+    dos.push(`<li><b>Subir alcalinidad ${fmt(d, 0)} ppm</b>: <b>${fmt(V * 1.68 * d / 1000, 2)} kg</b> de bicarbonato de sodio.</li>`);
+  }
+  if (datos.cianurico != null && datos.cianurico > 75) {
+    dos.push(`<li><b>Cianúrico alto</b> (${fmt(datos.cianurico, 0)} ppm): renovar parte del agua; el cloro pierde eficacia.</li>`);
+  }
+  $("#dosis").innerHTML = dos.length ? `<ul>${dos.join("")}</ul>` :
+    `<p class="muted">${datos.cloro == null && datos.ph == null ? "Escribe el cloro y el pH para calcular." : "No hay correcciones de dosificación con los datos actuales."}</p>`;
+
+  /* veredicto */
+  const criticos = filas.filter(f => (f.k === "cloro" || f.k === "ph") && f.e !== "ok" && f.e !== "sin");
+  const otros = filas.filter(f => f.k !== "cloro" && f.k !== "ph" && f.e !== "ok" && f.e !== "sin");
+  const vd = $("#veredicto");
+  vd.className = "verdict";
+  if (criticos.length) {
+    vd.classList.add("v-bad"); vd.querySelector(".ico").textContent = "⛔";
+    vd.querySelector("h3").textContent = "No apta para servicio";
+    vd.querySelector("p").textContent = "Corregir " + criticos.map(c => c.k === "ph" ? "pH" : c.r.nombre.toLowerCase()).join(" y ") + " antes de abrir.";
+  } else if (otros.length) {
+    vd.classList.add("v-warn"); vd.querySelector(".ico").textContent = "⚠️";
+    vd.querySelector("h3").textContent = "Apta con observaciones";
+    vd.querySelector("p").textContent = "Revisar: " + otros.map(o => `${o.k === "ph" ? "pH" : o.r.nombre.toLowerCase()} (${o.e})`).join(", ") + ".";
+  } else if (filas.some(f => f.v != null)) {
+    vd.classList.add("v-ok"); vd.querySelector(".ico").textContent = "✅";
+    vd.querySelector("h3").textContent = "Apta para servicio";
+    vd.querySelector("p").textContent = "Todos los parámetros medidos están dentro de rango. Registrar y firmar la bitácora.";
+  } else {
+    vd.classList.add("v-warn"); vd.querySelector(".ico").textContent = "🧪";
+    vd.querySelector("h3").textContent = "Sin datos todavía";
+    vd.querySelector("p").textContent = "Escribe los valores del día y el resultado se actualiza solo.";
+  }
+
+  ultimo = { fecha: $("#fecha").value || new Date().toISOString().slice(0, 10), V, datos, caudal, horas, banistas,
+             veredicto: vd.querySelector("h3").textContent, L };
+  return ultimo;
+}
+
+["cloro","combinado","ph","alcalinidad","dureza","cianurico","temperatura","turbiedad","tds","caudal","horas","banistas","filtroLavados","estanque"]
+  .forEach(id => { const el = $("#" + id); el.addEventListener("input", evaluar); el.addEventListener("change", evaluar); });
+
+$("#evaluar").addEventListener("click", evaluar);
+$("#limpiar").addEventListener("click", () => {
+  ["cloro","combinado","ph","alcalinidad","dureza","cianurico","temperatura","turbiedad","tds","caudal","horas","banistas","filtroLavados"]
+    .forEach(id => $("#" + id).value = "");
+  evaluar();
+});
+$("#imprimir").addEventListener("click", () => print());
+
+/* ---------- historial ---------- */
+const KEY = "cz-auditorias-v1";
+const leer = () => { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch { return []; } };
+const escribir = l => { try { localStorage.setItem(KEY, JSON.stringify(l)); } catch {} };
+
+function toast(msg) {
+  const el = $("#toast"); el.textContent = msg; el.classList.add("show");
+  clearTimeout(toast.dataset.t); toast.dataset.t = setTimeout(() => el.classList.remove("show"), 2400);
+}
+
+function pintarHist() {
+  const l = leer();
+  const cont = $("#hist");
+  if (!l.length) { cont.innerHTML = `<div class="empty">Todavía no hay auditorías guardadas.</div>`; return; }
+  cont.innerHTML = l.slice().reverse().map((a, i) => `
+    <div class="row">
+      <span class="date">${a.fecha}</span>
+      <span>${a.veredicto} · Cl ${a.datos.cloro ?? "—"} · pH ${a.datos.ph ?? "—"}</span>
+      <span class="pill ${a.veredicto.includes("No") ? "p-bad" : a.veredicto.includes("observ") ? "p-warn" : "p-ok"}">${a.veredicto.split(" ")[0]}</span>
+      <button class="iconbtn noprint" data-del="${l.length - 1 - i}" title="Borrar">✕</button>
+    </div>`).join("");
+  $$("#hist [data-del]").forEach(b => b.addEventListener("click", () => {
+    const l2 = leer(); l2.splice(Number(b.dataset.del), 1); escribir(l2); pintarHist();
+  }));
+}
+
+$("#guardar").addEventListener("click", () => {
+  const a = evaluar();
+  if (!a || (!a.datos.cloro && !a.datos.ph)) { toast("Escribe al menos cloro y pH"); return; }
+  const l = leer(); l.push(a); escribir(l); pintarHist();
+  toast("Auditoría guardada");
+});
+
+$("#borrarHist").addEventListener("click", () => {
+  if (confirm("¿Borrar todo el historial de auditorías de este navegador?")) { escribir([]); pintarHist(); }
+});
+
+$("#csv").addEventListener("click", () => {
+  const l = leer();
+  if (!l.length) { toast("No hay auditorías para exportar"); return; }
+  const cols = ["fecha","veredicto","estanque_m3","cloro","combinado","ph","alcalinidad","dureza","cianurico","temperatura","turbiedad","tds","caudal","horas","banistas","lsi"];
+  const rows = [cols.join(";")].concat(l.map(a => [
+    a.fecha, a.veredicto, a.V, a.datos.cloro, a.datos.combinado, a.datos.ph, a.datos.alcalinidad,
+    a.datos.dureza, a.datos.cianurico, a.datos.temperatura, a.datos.turbiedad, a.datos.tds,
+    a.caudal, a.horas, a.banistas, a.L == null ? "" : a.L.toFixed(2)
+  ].map(x => x ?? "").join(";")));
+  const blob = new Blob(["\ufeff" + rows.join("\n")], { type: "text/csv;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "auditorias-piscina-cerro-azul.csv";
+  a.click(); URL.revokeObjectURL(a.href);
+  toast("CSV descargado");
+});
+
+/* ---------- arranque ---------- */
+$("#fecha").value = new Date().toISOString().slice(0, 10);
+pintarHist();
+evaluar();
+})();
+</script>
+</body>
+</html>

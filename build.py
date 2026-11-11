@@ -1,0 +1,183 @@
+#!/usr/bin/env python3
+# Genera el sitio interactivo (index.html) del curso de piscinas + circular 0234/2026.
+# Uso: PYTHONPATH=/tmp/mdpy python3 build.py
+import re, json, html, pathlib
+
+ROOT = pathlib.Path(__file__).resolve().parent
+MD = ROOT.parent / "CURSO-DE-MANEJO-ADMINISTRATIVO-DE-PISCINAS.md"
+OUT = ROOT / "index.html"
+
+import markdown
+
+md = markdown.Markdown(extensions=["tables", "sane_lists", "attr_list"])
+
+def to_html(text: str) -> str:
+    md.reset()
+    return md.convert(text)
+
+def strip_md(s: str) -> str:
+    s = re.sub(r"[`*_>#]", "", s)
+    s = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", s)
+    return re.sub(r"\s+", " ", s).strip()
+
+# ---------------------------------------------------------------- contenido base
+raw = MD.read_text(encoding="utf-8")
+# fuera el bloque de índice
+raw = re.sub(r"## Índice\n(?:\n|.+\n)*?\n---\n", "---\n", raw, count=1)
+blocks = re.split(r"\n(?=## )", raw)
+
+CATS = [
+    ("normativa", "Normativa"),
+    ("m1", "Módulo 1"), ("m2", "Módulo 2"), ("m3", "Módulo 3"), ("m4", "Módulo 4"),
+    ("m5", "Módulo 5"), ("m6", "Módulo 6"), ("m7", "Módulo 7"), ("m8", "Módulo 8"),
+    ("circular", "Circular 0234/2026"),
+    ("evaluacion", "Evaluación"),
+    ("referencia", "Referencia"),
+]
+
+def categoria(titulo: str):
+    t = titulo.lower()
+    m = re.search(r"módulo\s*(\d)", t)
+    if m: return "m" + m.group(1)
+    if "normativ" in t or "marco" in t: return "normativa"
+    if "preguntas" in t: return "evaluacion"
+    if "chuleta" in t or "glosario" in t or "fuentes" in t: return "referencia"
+    return "referencia"
+
+sections = []
+for b in blocks:
+    b = b.strip()
+    if not b.startswith("## "):
+        continue
+    lines = b.splitlines()
+    titulo_md = lines[0][3:].strip()
+    if titulo_md.lower().startswith("índice"):
+        continue
+    titulo = re.sub(r"^\d+\.\s*", "", titulo_md)
+    cuerpo = "\n".join(lines[1:]).strip()
+    cat = categoria(titulo)
+
+    # El banco de preguntas se parte por taller para que el buscador apunte fino
+    if cat == "evaluacion":
+        partes = re.split(r"\n(?=### )", cuerpo)
+        intro = [p for p in partes if not p.lstrip().startswith("### ")]
+        if intro:
+            sections.append({
+                "id": "banco-intro", "cat": cat, "title": "Banco de preguntas · cómo usarlo",
+                "html": to_html("\n".join(intro).strip()),
+            })
+        for p in partes:
+            if not p.lstrip().startswith("### "):
+                continue
+            pt = p.splitlines()[0][4:].strip()
+            pb = "\n".join(p.splitlines()[1:]).strip()
+            slug = re.sub(r"[^a-z0-9]+", "-", pt.lower()).strip("-")
+            sections.append({"id": "q-" + slug, "cat": cat, "title": pt, "html": to_html(pb)})
+        continue
+
+    slug = re.sub(r"[^a-z0-9]+", "-", titulo.lower()).strip("-")
+    sections.append({"id": slug, "cat": cat, "title": titulo, "html": to_html(cuerpo)})
+
+# ---------------------------------------------------------------- circular 0234
+circular_md = """
+📄 **[Descargar la circular original (PDF)](circular-0234-2026.pdf)**
+
+**Radicado K 2026090000180 · 15/07/2026 · CIRCULAR** — Gobernación de Antioquia, Secretaría de Salud e
+Inclusión Social. *Asunto:* consideraciones generales para la adopción e implementación de la
+**Resolución 0234 de 2026** (Ministerio de Salud y Protección Social, 10 de febrero de 2026).
+
+### Qué dice, en corto
+
+| Punto | Contenido |
+|---|---|
+| **Base legal** | Ley 9 de 1979 (arts. 222, 229 y 230: calidad del agua, equipos de control y libro de registro diario) y Resolución 1229 de 2013 (art. 9: enfoque de riesgo en la inspección) |
+| **El vacío** | El **Decreto 554 de 2015** (hoy en el Decreto 780 de 2016) derogó el Decreto 2171 de 2009 y sus resoluciones, dejando sin herramientas la verificación de estándares del agua y las BPS |
+| **Lo que se venía aplicando** | **Resolución 2018060366702 del 02/11/2018**: adopta el modelo de IVC y la guía del Certificado de Cumplimiento. Ocho años de aplicación en los **125 municipios** de Antioquia hasta 2025 |
+| **Parámetros** | Art. **2.8.7.1.2.3 del Decreto 780 de 2016**: el agua de los estanques debe ser limpia y sana; el Ministerio define los parámetros fisicoquímicos y microbiológicos |
+| **Asistencia técnica** | Ministerio de Salud acompañó a las direcciones territoriales el **16 y 17 de abril de 2026** |
+| **Compromisos del Ministerio** | Entregar la **caja de herramientas** de la Resolución 0234/2026: acta de inspección sanitaria, instructivo para diligenciarla y el **ABC** con las dudas resueltas |
+
+### La decisión transitoria (lo más importante)
+
+> Mientras el nivel nacional precisa la implementación de la **Resolución 0234 de 2026** y ajusta la caja
+> de herramientas, **se continúa aplicando la Resolución 2018060366702 de 2018** y el acta de inspección
+> vigente, cuyo contenido es concurrente con la nueva normativa.
+
+En otras palabras: **no cambia el formulario todavía**. Lo que se viene haciendo en Antioquia sigue
+vigente; la Resolución 0234/2026 se incorporará y armonizará al modelo de IVC departamental cuando el
+Ministerio entregue las precisiones y los instrumentos ajustados.
+
+### Quién firma
+
+- **Alma Solano Sánchez** — Secretaria de Salud e Inclusión Social (firma).
+- Proyectó: **John William Tabares Morales** — profesional universitario, componente Vigilancia de la
+  Calidad del Agua para Consumo Humano y Uso Recreativo.
+- Aprobó: **Juan David Berrio Vargas** — Director Técnico de Salud Ambiental y Factores de Riesgo.
+- Revisó: **Erika Hernández Bolívar** — Directora de Asuntos Legales de Salud.
+
+### Cómo encaja con el curso
+
+- El curso (Alfa Consultores) enseña el modelo de IVC, las BPS, el IRAPI y los sellos con base en la
+  **Resolución 1229 de 2013** y el **Decreto 780 de 2016**, y usa el acta de inspección del Anexo B
+  (Gobernación de Antioquia) — exactamente la que la circular mantiene vigente de forma transitoria.
+- Por eso, para efectos prácticos en Antioquia: **estudias y te evalúas con el modelo que sigue vigente**,
+  y el día que el Ministerio publique la caja de herramientas de la Resolución 0234/2026, el acta y los
+  criterios se actualizarán. Conviene saber las dos referencias para no confundirlas.
+
+### Respuestas rápidas
+
+- **¿Ya cambió el acta de inspección?** No. Transitoriamente se usa la de la Resolución 2018060366702 de 2018.
+- **¿La Resolución 0234 de 2026 aplica ya?** Debe incorporarse y armonizarse; el Ministerio aún precisa la
+  implementación y ajusta la caja de herramientas.
+- **¿Qué pasa con los parámetros del agua?** Siguen los del art. 2.8.7.1.2.3 del Decreto 780 de 2016 y los
+  valores de referencia del modelo departamental.
+- **¿A quién aplica la circular?** Autoridades sanitarias municipales, responsables de establecimientos de
+  piscinas, laboratorios de agua, oferentes de capacitación a piscineros, salvavidas y administradores.
+"""
+
+sections.append({
+    "id": "circular-0234-2026",
+    "cat": "circular",
+    "title": "Circular 2026090000180 · Resolución 0234 de 2026",
+    "html": to_html(circular_md),
+})
+# la circular va arriba, después de normativa
+orden = {"normativa": 0, "circular": 1}
+sections.sort(key=lambda s: orden.get(s["cat"], 5))
+
+# ---------------------------------------------------------------- datos para el buscador
+data = []
+for s in sections:
+    texto = html.unescape(re.sub(r"<[^>]+>", " ", s["html"]))
+    data.append({
+        "id": s["id"], "cat": s["cat"], "title": s["title"],
+        "html": s["html"], "text": re.sub(r"\s+", " ", texto).strip(),
+    })
+
+cards = []
+for s in data:
+    cat_label = dict(CATS).get(s["cat"], "Referencia")
+    cards.append(f"""<article class="card" id="{s['id']}" data-cat="{s['cat']}" data-title="{html.escape(s['title'], quote=True)}">
+  <div class="card-top">
+    <button class="card-head" aria-expanded="false">
+      <span class="badge b-{s['cat']}">{html.escape(cat_label)}</span>
+      <h2>{html.escape(s['title'])}</h2>
+      <span class="chev" aria-hidden="true">⌄</span>
+    </button>
+    <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.1 0l3-3a5 5 0 0 0-7.1-7.1L11.6 4.2"/><path d="M14 11a5 5 0 0 0-7.1 0l-3 3a5 5 0 0 0 7.1 7.1l1.4-1.4"/></svg>
+    </button>
+  </div>
+  <div class="card-body">{s['html']}</div>
+</article>""")
+
+chips = "".join(
+    f'<button class="chip" data-filter="{k}">{v}</button>' for k, v in CATS
+)
+
+tpl = (ROOT / "template.html").read_text(encoding="utf-8")
+out = (tpl.replace("__CARDS__", "\n".join(cards))
+          .replace("__CHIPS__", chips)
+          .replace("__DATA__", json.dumps(data, ensure_ascii=False).replace("</", "<\\/")))
+OUT.write_text(out, encoding="utf-8")
+print(f"OK {OUT} · {len(data)} secciones · {len(out)/1024:.0f} KB")

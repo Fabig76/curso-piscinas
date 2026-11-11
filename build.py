@@ -27,24 +27,71 @@ raw = re.sub(r"## Índice\n(?:\n|.+\n)*?\n---\n", "---\n", raw, count=1)
 blocks = re.split(r"\n(?=## )", raw)
 
 CATS = [
+    ("general", "Generalidades"),
     ("normativa", "Normativa"),
-    ("m1", "Módulo 1"), ("m2", "Módulo 2"), ("m3", "Módulo 3"), ("m4", "Módulo 4"),
-    ("m5", "Módulo 5"), ("m6", "Módulo 6"), ("m7", "Módulo 7"), ("m8", "Módulo 8"),
+    ("gestion", "Gestión"),
+    ("contaminacion", "Contaminación"),
+    ("inspecciones", "Inspecciones"),
+    ("bps", "BPS"),
+    ("seguridad", "Plan de seguridad"),
+    ("sst", "Salud y seguridad"),
     ("circular", "Circular 0234/2026"),
-    ("evaluacion", "Evaluación"),
+    ("faq", "Preguntas"),
     ("referencia", "Referencia"),
 ]
 
+TEMAS = {
+    "Módulo 1": ("general", "Generalidades y tipos de piscina"),
+    "Módulo 2": ("normativa", "Marco normativo"),
+    "Módulo 3": ("gestion", "Gestión administrativa"),
+    "Módulo 4": ("contaminacion", "Contaminación y respuesta"),
+    "Módulo 5": ("inspecciones", "Inspecciones y sanciones"),
+    "Módulo 6": ("bps", "Buenas prácticas sanitarias"),
+    "Módulo 7": ("seguridad", "Plan de seguridad"),
+    "Módulo 8": ("sst", "Salud y seguridad en el trabajo"),
+}
+
+def limpiar(texto: str) -> str:
+    """Quita referencias al aula y suaviza el tono de curso."""
+    texto = re.sub(r"> ✅ \*\*Ya legible\.\*\*.*?\n\n", "", texto, flags=re.S)
+    pares = [
+        ("El examen final, en cambio, marca «cada 4 horas» como frecuencia de recirculación para piscinas de uso público. Para el taller y el material del módulo 1 la respuesta es **6 a 8 horas**; para el examen, **cada 4 horas**. Conviene saber las dos versiones.",
+         "Hay dos criterios en circulación: la referencia técnica fija **6 a 8 horas** para uso público y algunos protocolos de operación hablan de **cada 4 horas**. Confirma siempre con la autoridad sanitaria de tu municipio."),
+        ("(Un **engranaje** NO es elemento de piscina: es la respuesta del taller.)",
+         "(Un **engranaje** no es un elemento de piscina: es un error frecuente.)"),
+        (" (respuesta correcta del taller)", ""),
+        ("el taller marca como correcta la opción de **llamar al laboratorio para tomar muestra y verificar parámetros microbiológicos** antes de reabrir.",
+         "lo recomendable es **llamar al laboratorio para tomar muestra y verificar los parámetros microbiológicos** antes de reabrir."),
+        ("Esto explica la pregunta del taller: decía que el numeral **2.5** trataba de «duchas y vestidores», y la respuesta correcta era **FALSO** — ese contenido es el **2.3**; el 2.5 es el de drenajes y canaletas.",
+         "Ojo con la numeración: **duchas y vestidores** es el numeral **2.3**; el **2.5** corresponde a drenajes y canaletas."),
+        (" (así lo marca el taller)", ""),
+        ("El módulo es el **Anexo B:", "La referencia es el **Anexo B:"),
+        ("**Vigencia del curso de manejo administrativo de piscinas: 3 años.**",
+         "**Vigencia de la certificación del administrador: 3 años.**"),
+        ("**6. EL  curso de manejo administrativo de piscina tiene una vigencia de**",
+         "**6. ¿Cada cuánto se renueva la certificación del administrador?**"),
+        ("Puntos que evalúa el aula:", "Puntos clave:"),
+        ("| Vigencia del curso | 3 años |", "| Vigencia de la certificación | 3 años |"),
+        ("Las 60 preguntas que aparecieron en los talleres y en el examen final, con la respuesta que la plataforma marcó como correcta. Sirve para repasar y para responder consultas rápidas.",
+         "Preguntas de consulta rápida, agrupadas por tema, con la respuesta correcta."),
+        ("> **Notas sobre el examen:** la opción correcta de la pregunta 9 dice «flitro» (error de digitación del aula; es **filtro**). La pregunta 10 («cada 4 horas») contradice el periodo del módulo 1 (6–8 h para uso público): son dos versiones del mismo tema y conviene tener las dos presentes.",
+         "> **Notas:** en la pregunta 9 la opción aparece escrita «flitro» (error de digitación; es **filtro**). La pregunta 10 («cada 4 horas») y el periodo de 6–8 h son dos versiones del mismo tema: conviene tener las dos presentes."),
+    ]
+    for a, c in pares:
+        texto = texto.replace(a, c)
+    return texto
+
 def categoria(titulo: str):
+    m = re.search(r"Módulo\s*(\d)", titulo)
+    if m: return TEMAS["Módulo " + m.group(1)][0]
     t = titulo.lower()
-    m = re.search(r"módulo\s*(\d)", t)
-    if m: return "m" + m.group(1)
     if "normativ" in t or "marco" in t: return "normativa"
-    if "preguntas" in t: return "evaluacion"
+    if "preguntas" in t: return "faq"
     if "chuleta" in t or "glosario" in t or "fuentes" in t: return "referencia"
     return "referencia"
 
 sections = []
+visto_marco = False
 for b in blocks:
     b = b.strip()
     if not b.startswith("## "):
@@ -54,27 +101,50 @@ for b in blocks:
     if titulo_md.lower().startswith("índice"):
         continue
     titulo = re.sub(r"^\d+\.\s*", "", titulo_md)
-    cuerpo = "\n".join(lines[1:]).strip()
-    cat = categoria(titulo)
+    if titulo.startswith("Módulo "):
+        clave = titulo.split(" — ")[0]
+        if clave in TEMAS:
+            titulo = TEMAS[clave][1]
+    if titulo == "Marco normativo" and not visto_marco:
+        titulo = "Normas y artículos clave"
+        visto_marco = True
+    cuerpo = limpiar("\n".join(lines[1:]).strip())
+    cat = categoria(titulo_md)
 
     # El banco de preguntas se parte por taller para que el buscador apunte fino
-    if cat == "evaluacion":
+    if cat == "faq":
         partes = re.split(r"\n(?=### )", cuerpo)
         intro = [p for p in partes if not p.lstrip().startswith("### ")]
         if intro:
             sections.append({
-                "id": "banco-intro", "cat": cat, "title": "Banco de preguntas · cómo usarlo",
+                "id": "preguntas-intro", "cat": cat, "title": "Preguntas frecuentes",
                 "html": to_html("\n".join(intro).strip()),
             })
         for p in partes:
             if not p.lstrip().startswith("### "):
                 continue
             pt = p.splitlines()[0][4:].strip()
-            pb = "\n".join(p.splitlines()[1:]).strip()
+            pb = limpiar("\n".join(p.splitlines()[1:]).strip())
+            mm = re.search(r"Taller módulo\s*(\d)", pt)
+            if mm:
+                pt = "Preguntas · " + TEMAS["Módulo " + mm.group(1)][1]
+            elif pt.lower().startswith("examen"):
+                pt = "Preguntas · casos y cálculos"
             slug = re.sub(r"[^a-z0-9]+", "-", pt.lower()).strip("-")
             sections.append({"id": "q-" + slug, "cat": cat, "title": pt, "html": to_html(pb)})
         continue
 
+    if titulo.lower().startswith("fuentes"):
+        cuerpo = """- **Normas citadas:** Ley 9 de 1979 · Ley 1209 de 2008 · Decreto 780 de 2016 · Decreto 554 de 2015 ·
+  Decreto 1538 de 2005 · Ley 1801 de 2016 · Ley 1225 de 2008 · Resolución 1229 de 2013 · Resolución 1394 de
+  2015 · Resolución 4113 de 2012 · Resolución 4198 de 2012 · Resolución 2018060366702 de 2018.
+- **Circular 2026090000180** de la Gobernación de Antioquia (15/07/2026) sobre la Resolución 0234 de 2026.
+- **Cifras y tablas:** contrastadas con los documentos técnicos de referencia del sector y con el
+  formulario de inspección sanitaria (Anexo B, Antioquia).
+
+> **Aviso:** esta guía resume y ordena información técnica y normativa para el trabajo diario del
+> administrador y del piscinero. No sustituye el texto oficial de las normas, el acta de la autoridad
+> sanitaria ni el concepto de un profesional competente."""
     slug = re.sub(r"[^a-z0-9]+", "-", titulo.lower()).strip("-")
     sections.append({"id": slug, "cat": cat, "title": titulo, "html": to_html(cuerpo)})
 
@@ -115,14 +185,14 @@ Ministerio entregue las precisiones y los instrumentos ajustados.
 - Aprobó: **Juan David Berrio Vargas** — Director Técnico de Salud Ambiental y Factores de Riesgo.
 - Revisó: **Erika Hernández Bolívar** — Directora de Asuntos Legales de Salud.
 
-### Cómo encaja con el curso
+### Cómo se relaciona con esta guía
 
-- El curso (Alfa Consultores) enseña el modelo de IVC, las BPS, el IRAPI y los sellos con base en la
-  **Resolución 1229 de 2013** y el **Decreto 780 de 2016**, y usa el acta de inspección del Anexo B
-  (Gobernación de Antioquia) — exactamente la que la circular mantiene vigente de forma transitoria.
-- Por eso, para efectos prácticos en Antioquia: **estudias y te evalúas con el modelo que sigue vigente**,
-  y el día que el Ministerio publique la caja de herramientas de la Resolución 0234/2026, el acta y los
-  criterios se actualizarán. Conviene saber las dos referencias para no confundirlas.
+- Esta guía trabaja el modelo de IVC, las BPS, el IRAPI y los sellos con base en la **Resolución 1229 de
+  2013** y el **Decreto 780 de 2016**, y usa el acta de inspección del Anexo B (Gobernación de Antioquia):
+  exactamente la que la circular mantiene vigente de forma transitoria.
+- Para efectos prácticos en Antioquia: **se sigue auditando con el modelo vigente**, y el día que el
+  Ministerio publique la caja de herramientas de la Resolución 0234/2026, el acta y los criterios se
+  actualizarán. Conviene manejar las dos referencias para no confundirlas.
 
 ### Respuestas rápidas
 
@@ -148,15 +218,14 @@ Las preguntas que más se hacen, con la respuesta corta. Toca una para ver el de
 | Pregunta | Respuesta |
 |---|---|
 | **¿Cuánto cloro debe tener el agua?** | **2 a 4 ppm** de cloro libre residual en operación normal |
-| **¿Cada cuánto debe recircular el agua?** | **6 a 8 h** abierta al público · **4 a 6 h** uso restringido · **4 h** propiedad privada (el examen final dice «cada 4 horas» para uso público) |
+| **¿Cada cuánto debe recircular el agua?** | **6 a 8 h** abierta al público · **4 a 6 h** uso restringido · **4 h** propiedad privada (algunos protocolos usan «cada 4 horas» para uso público) |
 | **¿Cómo se calcula el volumen?** | Rectangular: **largo × ancho × profundidad media**. Circular: **π × r² × h** (0,785 × D² × h) |
 | **¿Profundidad máxima?** | Infantil **0,60 m** · uso público y recreativo **1,50 m** |
-| **¿Cuántos intentos tengo?** | Talleres: **3** (cuenta la nota más alta) · Examen final: **2** · Se aprueba con **4,00/5,00** |
 | **¿Qué significa el sello?** | **0–16 verde** (favorable) · **16,1–49,5 amarillo** (favorable condicionado) · **≥ 49,6 rojo** (desfavorable) |
 | **¿Dosis de choque por materia fecal?** | Sólida: **9 ppm**, 8 h de contacto, 24 h cerrada · Líquida: **20 ppm**, 13 h, 48 h cerrada |
 | **¿De cuánto es la multa?** | **50 a 1.000 SMMLV** y cierre temporal hasta **5 días** en la primera falta |
 | **¿Qué botiquín necesito?** | **A** si la superficie es < 2.000 m² · **B** entre 2.000 y 15.000 m² · **C** (dos tipo B) si supera 15.000 m² |
-| **¿Cuánto dura el curso?** | La certificación tiene **vigencia de 3 años** |
+| **¿Cada cuánto se renueva la certificación?** | La certificación del administrador tiene **vigencia de 3 años** |
 | **¿Ya cambió el acta por la Resolución 0234 de 2026?** | **Todavía no**: transitoriamente sigue la Resolución 2018060366702 de 2018 |
 """
 

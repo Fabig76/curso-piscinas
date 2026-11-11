@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Curso de Manejo Administrativo de Piscinas · Guía interactiva</title>
-<meta name="description" content="Guía interactiva del Curso de Manejo Administrativo de Piscinas (Alfa Consultores): normativa, 8 módulos, datos clave, 60 preguntas con respuesta y circular de la Resolución 0234 de 2026. Con buscador.">
+<title>Guía práctica de manejo de piscinas · consulta y auditoría</title>
+<meta name="description" content="Guía práctica de manejo de piscinas: normativa, operación, buenas prácticas sanitarias, IRAPI, sellos, plan de seguridad, preguntas frecuentes y la circular sobre la Resolución 0234 de 2026. Con buscador.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏊</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -119,15 +119,15 @@ main{min-width:0}
   padding:6px 9px; border-radius:7px; white-space:nowrap; border:1px solid transparent}
 .b-normativa{background:rgba(167,139,250,.16); color:#c4b5fd; border-color:rgba(167,139,250,.35)}
 .b-circular{background:rgba(251,191,36,.16); color:#fcd34d; border-color:rgba(251,191,36,.38)}
-.b-m1,.b-m2,.b-m3,.b-m4,.b-m5,.b-m6,.b-m7,.b-m8{background:rgba(56,189,248,.14); color:#7dd3fc; border-color:rgba(56,189,248,.32)}
-.b-evaluacion{background:rgba(52,211,153,.14); color:#6ee7b7; border-color:rgba(52,211,153,.32)}
+.b-general,.b-gestion,.b-contaminacion,.b-inspecciones,.b-bps,.b-seguridad,.b-sst{background:rgba(56,189,248,.14); color:#7dd3fc; border-color:rgba(56,189,248,.32)}
+.b-faq{background:rgba(52,211,153,.14); color:#6ee7b7; border-color:rgba(52,211,153,.32)}
 .b-referencia{background:rgba(148,163,184,.14); color:#cbd5e1; border-color:rgba(148,163,184,.30)}
-html[data-theme="light"] .b-m1,html[data-theme="light"] .b-m2,html[data-theme="light"] .b-m3,
-html[data-theme="light"] .b-m4,html[data-theme="light"] .b-m5,html[data-theme="light"] .b-m6,
-html[data-theme="light"] .b-m7,html[data-theme="light"] .b-m8{color:#0369a1}
+html[data-theme="light"] .b-general,html[data-theme="light"] .b-gestion,html[data-theme="light"] .b-contaminacion,
+html[data-theme="light"] .b-inspecciones,html[data-theme="light"] .b-bps,html[data-theme="light"] .b-seguridad,
+html[data-theme="light"] .b-sst{color:#0369a1}
 html[data-theme="light"] .b-normativa{color:#6d28d9}
 html[data-theme="light"] .b-circular{color:#a16207}
-html[data-theme="light"] .b-evaluacion{color:#047857}
+html[data-theme="light"] .b-faq{color:#047857}
 html[data-theme="light"] .b-referencia{color:#334155}
 .chev{color:var(--dim2); transition:transform .25s; font-size:20px; line-height:1}
 .card.open .chev{transform:rotate(180deg)}
@@ -189,7 +189,8 @@ footer b{color:var(--dim)}
   .shell{grid-template-columns:1fr}
   aside{display:none}
   .hero{padding:36px 0 10px}
-  .card-head{padding:15px}
+  .card-head{padding:15px; gap:10px}
+  .card-head h2{font-size:15.5px}
   .card-body{padding:0 16px 20px}
   .snip{padding:0 16px 14px}
 }
@@ -208,19 +209,20 @@ footer b{color:var(--dim)}
 
 <div class="wrap">
   <header class="hero">
-    <span class="kicker">🏊 Alfa Consultores · Curso certificado</span>
-    <h1>Manejo Administrativo de <em>Piscinas</em></h1>
-    <p class="lead">Toda la información del curso en un solo lugar: normativa, los 8 módulos, los datos que
-      más preguntan, las 60 preguntas de los talleres y del examen, y la circular de la Resolución 0234 de
-      2026. Escribe una palabra o una pregunta y la guía te responde.</p>
+    <span class="kicker">🏊 Guía práctica · instalaciones acuáticas</span>
+    <h1>Manejo de <em>piscinas</em></h1>
+    <p class="lead">Normativa, operación, buenas prácticas sanitarias y seguridad, explicadas para el
+      trabajo diario del administrador y del piscinero. Incluye las preguntas que más se hacen y la
+      circular vigente sobre la Resolución 0234 de 2026. Escribe una palabra o una pregunta y la guía te
+      responde.</p>
     <div class="stats">
-      <a class="stat" href="cerro-azul.html" style="text-decoration:none;border-color:rgba(56,189,248,.45)">
-        🏊 <b>Piscina Cerro Azul</b> · ficha técnica y auditoría →
-      </a>
-      <span class="stat"><span class="dot"></span><b>45/45</b> nota final</span>
-      <span class="stat"><b>8</b> módulos</span>
-      <span class="stat"><b>60</b> preguntas resueltas</span>
+      <span class="stat"><span class="dot"></span><b>9</b> temas</span>
+      <span class="stat"><b>60</b> preguntas frecuentes</span>
       <span class="stat"><b>1</b> circular 2026</span>
+      <span class="stat"><b>Datos</b> y tablas de referencia</span>
+      <a class="stat" href="cerro-azul.html" style="text-decoration:none;border-color:rgba(56,189,248,.45)">
+        🏊 <b>Piscina Cerro Azul</b> · ficha y auditoría →
+      </a>
     </div>
   </header>
 
@@ -238,7 +240,7 @@ footer b{color:var(--dim)}
       </button>
     </div>
     <div class="toolrow">
-      <div class="chips" id="chips"><button class="chip" data-filter="normativa">Normativa</button><button class="chip" data-filter="m1">Módulo 1</button><button class="chip" data-filter="m2">Módulo 2</button><button class="chip" data-filter="m3">Módulo 3</button><button class="chip" data-filter="m4">Módulo 4</button><button class="chip" data-filter="m5">Módulo 5</button><button class="chip" data-filter="m6">Módulo 6</button><button class="chip" data-filter="m7">Módulo 7</button><button class="chip" data-filter="m8">Módulo 8</button><button class="chip" data-filter="circular">Circular 0234/2026</button><button class="chip" data-filter="evaluacion">Evaluación</button><button class="chip" data-filter="referencia">Referencia</button></div>
+      <div class="chips" id="chips"><button class="chip" data-filter="general">Generalidades</button><button class="chip" data-filter="normativa">Normativa</button><button class="chip" data-filter="gestion">Gestión</button><button class="chip" data-filter="contaminacion">Contaminación</button><button class="chip" data-filter="inspecciones">Inspecciones</button><button class="chip" data-filter="bps">BPS</button><button class="chip" data-filter="seguridad">Plan de seguridad</button><button class="chip" data-filter="sst">Salud y seguridad</button><button class="chip" data-filter="circular">Circular 0234/2026</button><button class="chip" data-filter="faq">Preguntas</button><button class="chip" data-filter="referencia">Referencia</button></div>
       <span class="count" id="count" aria-live="polite"></span>
     </div>
   </div>
@@ -249,11 +251,11 @@ footer b{color:var(--dim)}
       <nav class="toc" id="toc" aria-label="Índice"></nav>
     </aside>
     <main id="cards">
-      <article class="card" id="marco-normativo" data-cat="normativa" data-title="Marco normativo">
+      <article class="card" id="normas-y-art-culos-clave" data-cat="normativa" data-title="Normas y artículos clave">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
       <span class="badge b-normativa">Normativa</span>
-      <h2>Marco normativo</h2>
+      <h2>Normas y artículos clave</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -337,6 +339,30 @@ footer b{color:var(--dim)}
 - Obligaciones del responsable del establecimiento → <strong>art. 2.8.7.1.3.1 del Decreto 780 de 2016</strong>, «sin perjuicio de las obligaciones asignadas por la <strong>Ley 1209 de 2008</strong>».</p>
 <hr /></div>
 </article>
+<article class="card" id="marco-normativo" data-cat="normativa" data-title="Marco normativo">
+  <div class="card-top">
+    <button class="card-head" aria-expanded="false">
+      <span class="badge b-normativa">Normativa</span>
+      <h2>Marco normativo</h2>
+      <span class="chev" aria-hidden="true">⌄</span>
+    </button>
+    <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.1 0l3-3a5 5 0 0 0-7.1-7.1L11.6 4.2"/><path d="M14 11a5 5 0 0 0-7.1 0l-3 3a5 5 0 0 0 7.1 7.1l1.4-1.4"/></svg>
+    </button>
+  </div>
+  <div class="card-body"><p>El marco normativo se estudia «con base en las directrices nacionales y departamentales» para tener respaldo ante copropietarios, demandas o discordias de usuarios (hoteles, spa, centros recreativos).</p>
+<p>Puntos clave:
+- <strong>Resolución 4198 de 2012</strong> → formulario de visita e inspección de aspectos técnicos y BPS.
+- <strong>Resolución 1394 de 2015</strong> → declaración de dispositivos de seguridad.
+- <strong>Resolución 4113 de 2012</strong> → reglamento técnico y dispositivos de seguridad (derogada).
+- <strong>Resolución 201860366762 de 2018</strong> → acceso y accesibilidad (no «revestimientos de bordes»).
+- <strong>Marcación de profundidad</strong> → <strong>Art. 224 Ley 9 de 1979</strong>, art. 11 y 13 Ley 1209 de 2008 y art. 2.8.7.1.2.4 del Decreto 780 de 2016.
+- <strong>Decreto 1538 de 2005, art. 14</strong> → sí habla de acceso y accesibilidad (verdadero).
+- <strong>Ley 1801 de 2016</strong> → el art. <strong>32</strong> define privacidad; el art. <strong>27</strong> no (falso).
+- <strong>Declaración de conformidad de una piscina nueva</strong> → planos hidráulicos, manual de operación, descripción de la disposición de lodos, plan de seguridad y <strong>concepto sanitario</strong>.
+- <strong>Accesibilidad:</strong> Ley 361 de 1997 (Título Cuarto) y Resolución 201860366762 de 2018.</p>
+<hr /></div>
+</article>
 <article class="card" id="circular-0234-2026" data-cat="circular" data-title="Circular 2026090000180 · Resolución 0234 de 2026">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
@@ -404,14 +430,14 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <li>Aprobó: <strong>Juan David Berrio Vargas</strong> — Director Técnico de Salud Ambiental y Factores de Riesgo.</li>
 <li>Revisó: <strong>Erika Hernández Bolívar</strong> — Directora de Asuntos Legales de Salud.</li>
 </ul>
-<h3>Cómo encaja con el curso</h3>
+<h3>Cómo se relaciona con esta guía</h3>
 <ul>
-<li>El curso (Alfa Consultores) enseña el modelo de IVC, las BPS, el IRAPI y los sellos con base en la
-  <strong>Resolución 1229 de 2013</strong> y el <strong>Decreto 780 de 2016</strong>, y usa el acta de inspección del Anexo B
-  (Gobernación de Antioquia) — exactamente la que la circular mantiene vigente de forma transitoria.</li>
-<li>Por eso, para efectos prácticos en Antioquia: <strong>estudias y te evalúas con el modelo que sigue vigente</strong>,
-  y el día que el Ministerio publique la caja de herramientas de la Resolución 0234/2026, el acta y los
-  criterios se actualizarán. Conviene saber las dos referencias para no confundirlas.</li>
+<li>Esta guía trabaja el modelo de IVC, las BPS, el IRAPI y los sellos con base en la <strong>Resolución 1229 de
+  2013</strong> y el <strong>Decreto 780 de 2016</strong>, y usa el acta de inspección del Anexo B (Gobernación de Antioquia):
+  exactamente la que la circular mantiene vigente de forma transitoria.</li>
+<li>Para efectos prácticos en Antioquia: <strong>se sigue auditando con el modelo vigente</strong>, y el día que el
+  Ministerio publique la caja de herramientas de la Resolución 0234/2026, el acta y los criterios se
+  actualizarán. Conviene manejar las dos referencias para no confundirlas.</li>
 </ul>
 <h3>Respuestas rápidas</h3>
 <ul>
@@ -450,7 +476,7 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 </tr>
 <tr>
 <td><strong>¿Cada cuánto debe recircular el agua?</strong></td>
-<td><strong>6 a 8 h</strong> abierta al público · <strong>4 a 6 h</strong> uso restringido · <strong>4 h</strong> propiedad privada (el examen final dice «cada 4 horas» para uso público)</td>
+<td><strong>6 a 8 h</strong> abierta al público · <strong>4 a 6 h</strong> uso restringido · <strong>4 h</strong> propiedad privada (algunos protocolos usan «cada 4 horas» para uso público)</td>
 </tr>
 <tr>
 <td><strong>¿Cómo se calcula el volumen?</strong></td>
@@ -459,10 +485,6 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <tr>
 <td><strong>¿Profundidad máxima?</strong></td>
 <td>Infantil <strong>0,60 m</strong> · uso público y recreativo <strong>1,50 m</strong></td>
-</tr>
-<tr>
-<td><strong>¿Cuántos intentos tengo?</strong></td>
-<td>Talleres: <strong>3</strong> (cuenta la nota más alta) · Examen final: <strong>2</strong> · Se aprueba con <strong>4,00/5,00</strong></td>
 </tr>
 <tr>
 <td><strong>¿Qué significa el sello?</strong></td>
@@ -481,8 +503,8 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <td><strong>A</strong> si la superficie es &lt; 2.000 m² · <strong>B</strong> entre 2.000 y 15.000 m² · <strong>C</strong> (dos tipo B) si supera 15.000 m²</td>
 </tr>
 <tr>
-<td><strong>¿Cuánto dura el curso?</strong></td>
-<td>La certificación tiene <strong>vigencia de 3 años</strong></td>
+<td><strong>¿Cada cuánto se renueva la certificación?</strong></td>
+<td>La certificación del administrador tiene <strong>vigencia de 3 años</strong></td>
 </tr>
 <tr>
 <td><strong>¿Ya cambió el acta por la Resolución 0234 de 2026?</strong></td>
@@ -491,11 +513,11 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 </tbody>
 </table></div>
 </article>
-<article class="card" id="m-dulo-1-generalidades-de-las-piscinas" data-cat="m1" data-title="Módulo 1 — Generalidades de las piscinas">
+<article class="card" id="generalidades-y-tipos-de-piscina" data-cat="general" data-title="Generalidades y tipos de piscina">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-m1">Módulo 1</span>
-      <h2>Módulo 1 — Generalidades de las piscinas</h2>
+      <span class="badge b-general">Generalidades</span>
+      <h2>Generalidades y tipos de piscina</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -530,7 +552,7 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 </tbody>
 </table>
 <h3>Elementos de una piscina</h3>
-<p>Bomba, trampa de cabello, <strong>filtro</strong>, flujómetro, <strong>desnatadores</strong>, rejilla de fondo y dosificadores químicos. (Un <strong>engranaje</strong> NO es elemento de piscina: es la respuesta del taller.)</p>
+<p>Bomba, trampa de cabello, <strong>filtro</strong>, flujómetro, <strong>desnatadores</strong>, rejilla de fondo y dosificadores químicos. (Un <strong>engranaje</strong> no es un elemento de piscina: es un error frecuente.)</p>
 <ul>
 <li><strong>Desnatador:</strong> estructura que permite <strong>eliminar el material flotante</strong> del agua (no es un dosificador ni un estanque).</li>
 <li><strong>Cuántos desnatadores:</strong> <strong>uno por cada 80 m²</strong> de área de piscina, o en su defecto una <strong>canaleta desnatadora</strong> a lo largo del perímetro.</li>
@@ -549,7 +571,7 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 | Uso restringido (UR) | <strong>4 a 6 horas</strong> |
 | Propiedad privada unihabitacional (PR) | <strong>4 horas</strong> |</p>
 <blockquote>
-<p>⚠️ El examen final, en cambio, marca «cada 4 horas» como frecuencia de recirculación para piscinas de uso público. Para el taller y el material del módulo 1 la respuesta es <strong>6 a 8 horas</strong>; para el examen, <strong>cada 4 horas</strong>. Conviene saber las dos versiones.</p>
+<p>⚠️ Hay dos criterios en circulación: la referencia técnica fija <strong>6 a 8 horas</strong> para uso público y algunos protocolos de operación hablan de <strong>cada 4 horas</strong>. Confirma siempre con la autoridad sanitaria de tu municipio.</p>
 </blockquote>
 <h3>Filtración y mantenimiento</h3>
 <ul>
@@ -574,35 +596,11 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 </ul>
 <hr /></div>
 </article>
-<article class="card" id="m-dulo-2-contexto-normativo" data-cat="m2" data-title="Módulo 2 — Contexto normativo">
+<article class="card" id="gesti-n-administrativa" data-cat="gestion" data-title="Gestión administrativa">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-m2">Módulo 2</span>
-      <h2>Módulo 2 — Contexto normativo</h2>
-      <span class="chev" aria-hidden="true">⌄</span>
-    </button>
-    <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.1 0l3-3a5 5 0 0 0-7.1-7.1L11.6 4.2"/><path d="M14 11a5 5 0 0 0-7.1 0l-3 3a5 5 0 0 0 7.1 7.1l1.4-1.4"/></svg>
-    </button>
-  </div>
-  <div class="card-body"><p>El marco normativo se estudia «con base en las directrices nacionales y departamentales» para tener respaldo ante copropietarios, demandas o discordias de usuarios (hoteles, spa, centros recreativos).</p>
-<p>Puntos que evalúa el aula:
-- <strong>Resolución 4198 de 2012</strong> → formulario de visita e inspección de aspectos técnicos y BPS (respuesta correcta del taller).
-- <strong>Resolución 1394 de 2015</strong> → declaración de dispositivos de seguridad.
-- <strong>Resolución 4113 de 2012</strong> → reglamento técnico y dispositivos de seguridad (derogada).
-- <strong>Resolución 201860366762 de 2018</strong> → acceso y accesibilidad (no «revestimientos de bordes»).
-- <strong>Marcación de profundidad</strong> → <strong>Art. 224 Ley 9 de 1979</strong>, art. 11 y 13 Ley 1209 de 2008 y art. 2.8.7.1.2.4 del Decreto 780 de 2016.
-- <strong>Decreto 1538 de 2005, art. 14</strong> → sí habla de acceso y accesibilidad (verdadero).
-- <strong>Ley 1801 de 2016</strong> → el art. <strong>32</strong> define privacidad; el art. <strong>27</strong> no (falso).
-- <strong>Declaración de conformidad de una piscina nueva</strong> → planos hidráulicos, manual de operación, descripción de la disposición de lodos, plan de seguridad y <strong>concepto sanitario</strong>.
-- <strong>Accesibilidad:</strong> Ley 361 de 1997 (Título Cuarto) y Resolución 201860366762 de 2018.</p>
-<hr /></div>
-</article>
-<article class="card" id="m-dulo-3-herramientas-de-la-gesti-n-administrativa" data-cat="m3" data-title="Módulo 3 — Herramientas de la gestión administrativa">
-  <div class="card-top">
-    <button class="card-head" aria-expanded="false">
-      <span class="badge b-m3">Módulo 3</span>
-      <h2>Módulo 3 — Herramientas de la gestión administrativa</h2>
+      <span class="badge b-gestion">Gestión</span>
+      <h2>Gestión administrativa</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -626,7 +624,7 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <ul>
 <li><strong>Piscinero</strong> en instalaciones de uso público (parques recreativos, etc.): debe tener <strong>diploma de piscinero certificado y competencia laboral del SENA</strong>.</li>
 <li><strong>Salvavidas:</strong> pueden capacitar y certificar el SENA o cualquier entidad pública o privada con formación teórico-práctica integral.</li>
-<li><strong>Vigencia del curso de manejo administrativo de piscinas: 3 años.</strong></li>
+<li><strong>Vigencia de la certificación del administrador: 3 años.</strong></li>
 </ul>
 <h3>Autoridad sanitaria</h3>
 <ul>
@@ -636,11 +634,11 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 </ul>
 <hr /></div>
 </article>
-<article class="card" id="m-dulo-4-respuesta-a-la-contaminaci-n" data-cat="m4" data-title="Módulo 4 — Respuesta a la contaminación">
+<article class="card" id="contaminaci-n-y-respuesta" data-cat="contaminacion" data-title="Contaminación y respuesta">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-m4">Módulo 4</span>
-      <h2>Módulo 4 — Respuesta a la contaminación</h2>
+      <span class="badge b-contaminacion">Contaminación</span>
+      <h2>Contaminación y respuesta</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -701,14 +699,14 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 </ul>
 <p><strong>Restablecimiento del servicio (otra ruta del material):</strong> cerrar el vaso, retirar suciedad con barredera, elevar cloro a <strong>20 ppm</strong> con <strong>pH entre 7,0 y 7,5 durante 8 horas</strong>, limpiar rebosaderos y filtros (cambiar arena si hace falta) y regular cloro y pH antes de abrir.</p>
 <p><strong>Heces diarreicas y vómitos:</strong> mismo protocolo con <strong>20 ppm</strong> y tiempos largos (13 h de contacto / 48 h fuera de servicio).</p>
-<p><strong>Sobre reabrir:</strong> el material dice que se abre cuando el cloro vuelve a 2–4 ppm; el taller marca como correcta la opción de <strong>llamar al laboratorio para tomar muestra y verificar parámetros microbiológicos</strong> antes de reabrir.</p>
+<p><strong>Sobre reabrir:</strong> el material dice que se abre cuando el cloro vuelve a 2–4 ppm; lo recomendable es <strong>llamar al laboratorio para tomar muestra y verificar los parámetros microbiológicos</strong> antes de reabrir.</p>
 <hr /></div>
 </article>
-<article class="card" id="m-dulo-5-inspecciones-de-las-autoridades" data-cat="m5" data-title="Módulo 5 — Inspecciones de las autoridades">
+<article class="card" id="inspecciones-y-sanciones" data-cat="inspecciones" data-title="Inspecciones y sanciones">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-m5">Módulo 5</span>
-      <h2>Módulo 5 — Inspecciones de las autoridades</h2>
+      <span class="badge b-inspecciones">Inspecciones</span>
+      <h2>Inspecciones y sanciones</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -727,21 +725,18 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 </ul>
 <hr /></div>
 </article>
-<article class="card" id="m-dulo-6-bps-en-instalaciones-acu-ticas" data-cat="m6" data-title="Módulo 6 — BPS en instalaciones acuáticas">
+<article class="card" id="buenas-pr-cticas-sanitarias" data-cat="bps" data-title="Buenas prácticas sanitarias">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-m6">Módulo 6</span>
-      <h2>Módulo 6 — BPS en instalaciones acuáticas</h2>
+      <span class="badge b-bps">BPS</span>
+      <h2>Buenas prácticas sanitarias</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.1 0l3-3a5 5 0 0 0-7.1-7.1L11.6 4.2"/><path d="M14 11a5 5 0 0 0-7.1 0l-3 3a5 5 0 0 0 7.1 7.1l1.4-1.4"/></svg>
     </button>
   </div>
-  <div class="card-body"><blockquote>
-<p>✅ <strong>Ya legible.</strong> El PDF (<code>pdfs/97-CURSO_ADMINISTRADOR_MODULO_6.pdf</code>, 24 páginas, 3,2 MB) <strong>sí se podía descargar</strong>; el problema era que estaba <strong>escaneado como imágenes</strong> (sin capa de texto) y además subido con extensión <code>.crdownload</code>. Se le aplicó <strong>OCR con Vision de macOS</strong> y su texto quedó en <code>textos/97.txt</code>. Lo que sigue ya es contenido real del documento.</p>
-</blockquote>
-<p>El módulo es el <strong>Anexo B: Formulario Único de Inspección Sanitaria a Instalación Acuática o Estructura Similar</strong> (Gobernación de Antioquia), con 4 bloques de BPS y los índices de riesgo.</p>
+  <div class="card-body"><p>La referencia es el <strong>Anexo B: Formulario Único de Inspección Sanitaria a Instalación Acuática o Estructura Similar</strong> (Gobernación de Antioquia), con 4 bloques de BPS y los índices de riesgo.</p>
 <h3>Bloque 1 — BPS generales de la instalación (BPSG)</h3>
 <table>
 <thead>
@@ -783,7 +778,7 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <li><strong>2.6</strong> Área o espacio físico para la persona afectada (bañista) en caso de emergencia.</li>
 </ul>
 <blockquote>
-<p>⚠️ Esto explica la pregunta del taller: decía que el numeral <strong>2.5</strong> trataba de «duchas y vestidores», y la respuesta correcta era <strong>FALSO</strong> — ese contenido es el <strong>2.3</strong>; el 2.5 es el de drenajes y canaletas.</p>
+<p>⚠️ Ojo con la numeración: <strong>duchas y vestidores</strong> es el numeral <strong>2.3</strong>; el <strong>2.5</strong> corresponde a drenajes y canaletas.</p>
 </blockquote>
 <h3>Bloque 3 — Documentos y comunicación</h3>
 <ul>
@@ -815,11 +810,11 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 </ul>
 <hr /></div>
 </article>
-<article class="card" id="m-dulo-7-plan-de-seguridad-de-piscinas" data-cat="m7" data-title="Módulo 7 — Plan de seguridad de piscinas">
+<article class="card" id="plan-de-seguridad" data-cat="seguridad" data-title="Plan de seguridad">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-m7">Módulo 7</span>
-      <h2>Módulo 7 — Plan de seguridad de piscinas</h2>
+      <span class="badge b-seguridad">Plan de seguridad</span>
+      <h2>Plan de seguridad</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -830,7 +825,7 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <ul>
 <li><strong>Áreas complementarias e instalaciones anexas:</strong> planos aprobados por autoridad competente, señalización, equipos de seguridad, unidades sanitarias → <strong>todas</strong> cuentan.</li>
 <li><strong>Aspectos de seguridad:</strong> cerramientos, puertas de acceso y salida, dispositivos (chapas, <strong>botón de parada de emergencia</strong>, citófono o teléfono, alarmas, cerramientos).</li>
-<li><strong>Estanque de piscina:</strong> revestimientos del estanque, forma de construcción y pisos, etc. Los <strong>2 aros salvavidas y el gancho pastor</strong> se evalúan como <strong>equipo de seguridad</strong>, no como criterio técnico del estanque (así lo marca el taller).</li>
+<li><strong>Estanque de piscina:</strong> revestimientos del estanque, forma de construcción y pisos, etc. Los <strong>2 aros salvavidas y el gancho pastor</strong> se evalúan como <strong>equipo de seguridad</strong>, no como criterio técnico del estanque.</li>
 </ul>
 <h3>Matriz de riesgo del plan de emergencia</h3>
 <p><strong>Escala de probabilidad:</strong>
@@ -871,11 +866,11 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 </ul>
 <hr /></div>
 </article>
-<article class="card" id="m-dulo-8-salud-y-seguridad-en-el-trabajo" data-cat="m8" data-title="Módulo 8 — Salud y seguridad en el trabajo">
+<article class="card" id="salud-y-seguridad-en-el-trabajo" data-cat="sst" data-title="Salud y seguridad en el trabajo">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-m8">Módulo 8</span>
-      <h2>Módulo 8 — Salud y seguridad en el trabajo</h2>
+      <span class="badge b-sst">Salud y seguridad</span>
+      <h2>Salud y seguridad en el trabajo</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -951,24 +946,24 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 </ul>
 <hr /></div>
 </article>
-<article class="card" id="banco-intro" data-cat="evaluacion" data-title="Banco de preguntas · cómo usarlo">
+<article class="card" id="preguntas-intro" data-cat="faq" data-title="Preguntas frecuentes">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-evaluacion">Evaluación</span>
-      <h2>Banco de preguntas · cómo usarlo</h2>
+      <span class="badge b-faq">Preguntas</span>
+      <h2>Preguntas frecuentes</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 13a5 5 0 0 0 7.1 0l3-3a5 5 0 0 0-7.1-7.1L11.6 4.2"/><path d="M14 11a5 5 0 0 0-7.1 0l-3 3a5 5 0 0 0 7.1 7.1l1.4-1.4"/></svg>
     </button>
   </div>
-  <div class="card-body"><p>Las 60 preguntas que aparecieron en los talleres y en el examen final, con la respuesta que la plataforma marcó como correcta. Sirve para repasar y para responder consultas rápidas.</p></div>
+  <div class="card-body"><p>Preguntas de consulta rápida, agrupadas por tema, con la respuesta correcta.</p></div>
 </article>
-<article class="card" id="q-taller-m-dulo-1" data-cat="evaluacion" data-title="Taller módulo 1">
+<article class="card" id="q-preguntas-generalidades-y-tipos-de-piscina" data-cat="faq" data-title="Preguntas · Generalidades y tipos de piscina">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-evaluacion">Evaluación</span>
-      <h2>Taller módulo 1</h2>
+      <span class="badge b-faq">Preguntas</span>
+      <h2>Preguntas · Generalidades y tipos de piscina</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -986,11 +981,11 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <p><strong>5. Complete: en la tabla 15 del modelo de IVC, la norma 1 es «BUENAS PRÁCTICAS (1.) ___ GENERALES DE LA INSTALACIÓN ACUÁTICA DE (2.) ___ SIMILAR»</strong>
 - ✅ a. 1. SANITARIAS · 2. ESTRUCTURA</p></div>
 </article>
-<article class="card" id="q-taller-m-dulo-2" data-cat="evaluacion" data-title="Taller módulo 2">
+<article class="card" id="q-preguntas-marco-normativo" data-cat="faq" data-title="Preguntas · Marco normativo">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-evaluacion">Evaluación</span>
-      <h2>Taller módulo 2</h2>
+      <span class="badge b-faq">Preguntas</span>
+      <h2>Preguntas · Marco normativo</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -1010,11 +1005,11 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <p><strong>6. Cuales son los requisitos para la declaración de conformidad de una piscina nueva</strong>
 - ✅ a. planos hidraulicos, manual de operacion, descripcion de la disposicion de lodos, plan de seguridad, concepto sanitario</p></div>
 </article>
-<article class="card" id="q-taller-m-dulo-3" data-cat="evaluacion" data-title="Taller módulo 3">
+<article class="card" id="q-preguntas-gesti-n-administrativa" data-cat="faq" data-title="Preguntas · Gestión administrativa">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-evaluacion">Evaluación</span>
-      <h2>Taller módulo 3</h2>
+      <span class="badge b-faq">Preguntas</span>
+      <h2>Preguntas · Gestión administrativa</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -1034,11 +1029,11 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <p><strong>6. EL  curso de manejo administrativo de piscina tiene una vigencia de</strong>
 - ✅ a. 3 año</p></div>
 </article>
-<article class="card" id="q-taller-m-dulo-4" data-cat="evaluacion" data-title="Taller módulo 4">
+<article class="card" id="q-preguntas-contaminaci-n-y-respuesta" data-cat="faq" data-title="Preguntas · Contaminación y respuesta">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-evaluacion">Evaluación</span>
-      <h2>Taller módulo 4</h2>
+      <span class="badge b-faq">Preguntas</span>
+      <h2>Preguntas · Contaminación y respuesta</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -1058,11 +1053,11 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <p><strong>6. Despues de ajustar la piscina ante un accidente fecal, es posible</strong>
 - ✅ a. llamar al laboratorio para tomar una muestra y verificar los parametros microbiologicos</p></div>
 </article>
-<article class="card" id="q-taller-m-dulo-5" data-cat="evaluacion" data-title="Taller módulo 5">
+<article class="card" id="q-preguntas-inspecciones-y-sanciones" data-cat="faq" data-title="Preguntas · Inspecciones y sanciones">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-evaluacion">Evaluación</span>
-      <h2>Taller módulo 5</h2>
+      <span class="badge b-faq">Preguntas</span>
+      <h2>Preguntas · Inspecciones y sanciones</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -1080,11 +1075,11 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <p><strong>5. El Artículo 16, que habla de las sanciones, dice textualmente que: "La autoridad de control prevista en la ley deberá inspeccionar físicamente la instalación final de la piscina o estructura similar y deberá efectuar una revisión del plan de seguridad de la piscina o del manejo de las operaciones diarias." esto es</strong>
 - ✅ b. Falso</p></div>
 </article>
-<article class="card" id="q-taller-m-dulo-6" data-cat="evaluacion" data-title="Taller módulo 6">
+<article class="card" id="q-preguntas-buenas-pr-cticas-sanitarias" data-cat="faq" data-title="Preguntas · Buenas prácticas sanitarias">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-evaluacion">Evaluación</span>
-      <h2>Taller módulo 6</h2>
+      <span class="badge b-faq">Preguntas</span>
+      <h2>Preguntas · Buenas prácticas sanitarias</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -1102,11 +1097,11 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <p><strong>5. Cuando en la visita de la autoridad sanitaria se obtiene un puntaje evaluado en 20, significa que se obtiene un sello</strong>
 - ✅ b. AMARILLO: FAVORABLE CONDICIONADO</p></div>
 </article>
-<article class="card" id="q-taller-m-dulo-7" data-cat="evaluacion" data-title="Taller módulo 7">
+<article class="card" id="q-preguntas-plan-de-seguridad" data-cat="faq" data-title="Preguntas · Plan de seguridad">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-evaluacion">Evaluación</span>
-      <h2>Taller módulo 7</h2>
+      <span class="badge b-faq">Preguntas</span>
+      <h2>Preguntas · Plan de seguridad</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -1126,11 +1121,11 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <p><strong>6. En caso de una emergencia por posible ahogamiento el botón de parada es indispensable para</strong>
 - ✅ b. detener el motor</p></div>
 </article>
-<article class="card" id="q-taller-m-dulo-8" data-cat="evaluacion" data-title="Taller módulo 8">
+<article class="card" id="q-preguntas-salud-y-seguridad-en-el-trabajo" data-cat="faq" data-title="Preguntas · Salud y seguridad en el trabajo">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-evaluacion">Evaluación</span>
-      <h2>Taller módulo 8</h2>
+      <span class="badge b-faq">Preguntas</span>
+      <h2>Preguntas · Salud y seguridad en el trabajo</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -1150,11 +1145,11 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <p><strong>6. El sistema global de señalización indica que los elementos de protección personal se clasifican de color</strong>
 - ✅ b. AZUL: OBLIGATORIO</p></div>
 </article>
-<article class="card" id="q-examen-final-15-preguntas" data-cat="evaluacion" data-title="Examen final (15 preguntas)">
+<article class="card" id="q-preguntas-casos-y-c-lculos" data-cat="faq" data-title="Preguntas · casos y cálculos">
   <div class="card-top">
     <button class="card-head" aria-expanded="false">
-      <span class="badge b-evaluacion">Evaluación</span>
-      <h2>Examen final (15 preguntas)</h2>
+      <span class="badge b-faq">Preguntas</span>
+      <h2>Preguntas · casos y cálculos</h2>
       <span class="chev" aria-hidden="true">⌄</span>
     </button>
     <button class="linkbtn" title="Copiar enlace a esta sección" aria-label="Copiar enlace">
@@ -1192,7 +1187,7 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <p><strong>15. La apertura y puesta en marcha de las piscinas requiere de:</strong>
 - ✅ El certificado de calidad de agua.</p>
 <blockquote>
-<p><strong>Notas sobre el examen:</strong> la opción correcta de la pregunta 9 dice «flitro» (error de digitación del aula; es <strong>filtro</strong>). La pregunta 10 («cada 4 horas») contradice el periodo del módulo 1 (6–8 h para uso público): son dos versiones del mismo tema y conviene tener las dos presentes.</p>
+<p><strong>Notas:</strong> en la pregunta 9 la opción aparece escrita «flitro» (error de digitación; es <strong>filtro</strong>). La pregunta 10 («cada 4 horas») y el periodo de 6–8 h son dos versiones del mismo tema: conviene tener las dos presentes.</p>
 </blockquote>
 <hr /></div>
 </article>
@@ -1284,7 +1279,7 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 <td>mínimo 2 años</td>
 </tr>
 <tr>
-<td>Vigencia del curso</td>
+<td>Vigencia de la certificación</td>
 <td>3 años</td>
 </tr>
 <tr>
@@ -1367,13 +1362,17 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
     </button>
   </div>
   <div class="card-body"><ul>
-<li><strong>PDF originales del curso:</strong> <code>pdfs/</code> (8 módulos, descargados del aula).</li>
-<li><strong>Texto extraído de los PDF:</strong> <code>textos/</code> — los módulos 1 a 5, 7 y 8 salen del texto embebido; el <strong>módulo 6</strong> se reconstruyó con <strong>OCR</strong> (<code>textos/97.txt</code>).</li>
-<li><strong>Reglas y estructura del aula:</strong> <a href="ESTADO.md">ESTADO.md</a>.</li>
-<li><strong>Capturas:</strong> <code>portal-curso.png</code> (curso), <code>curso-terminado.png</code> (notas finales 45/45).</li>
+<li><strong>Normas citadas:</strong> Ley 9 de 1979 · Ley 1209 de 2008 · Decreto 780 de 2016 · Decreto 554 de 2015 ·
+  Decreto 1538 de 2005 · Ley 1801 de 2016 · Ley 1225 de 2008 · Resolución 1229 de 2013 · Resolución 1394 de
+  2015 · Resolución 4113 de 2012 · Resolución 4198 de 2012 · Resolución 2018060366702 de 2018.</li>
+<li><strong>Circular 2026090000180</strong> de la Gobernación de Antioquia (15/07/2026) sobre la Resolución 0234 de 2026.</li>
+<li><strong>Cifras y tablas:</strong> contrastadas con los documentos técnicos de referencia del sector y con el
+  formulario de inspección sanitaria (Anexo B, Antioquia).</li>
 </ul>
 <blockquote>
-<p><strong>Nota de honestidad:</strong> el módulo 6 era un PDF escaneado; su contenido se recuperó con <strong>OCR (Vision de macOS)</strong> y el texto crudo quedó en <code>textos/97.txt</code>. Donde el material y el examen se contradicen (frecuencia de recirculación) quedó anotado.</p>
+<p><strong>Aviso:</strong> esta guía resume y ordena información técnica y normativa para el trabajo diario del
+administrador y del piscinero. No sustituye el texto oficial de las normas, el acta de la autoridad
+sanitaria ni el concepto de un profesional competente.</p>
 </blockquote></div>
 </article>
       <div class="empty" id="empty">
@@ -1393,10 +1392,9 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
   </div>
 
   <footer>
-    <p><b>Guía interactiva del Curso de Manejo Administrativo de Piscinas</b> — Alfa Consultores Profesionales ·
-      contenido del aula (8 módulos), banco de preguntas del curso y Circular 2026090000180 de la Gobernación
-      de Antioquia sobre la Resolución 0234 de 2026.</p>
-    <p>Documento de estudio. No sustituye la norma oficial ni el acta de inspección vigente.</p>
+    <p><b>Guía práctica de manejo de piscinas</b> — normativa, operación, buenas prácticas sanitarias y
+      seguridad, con la Circular 2026090000180 de la Gobernación de Antioquia sobre la Resolución 0234 de 2026.</p>
+    <p>Documento de consulta. No sustituye la norma oficial ni el acta de inspección vigente.</p>
   </footer>
 </div>
 
@@ -1589,20 +1587,22 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 
   /* ---------- índice lateral ---------- */
   const NOMBRES = {
-    normativa: "Normativa", circular: "Circular 0234/2026",
-    m1: "Módulo 1", m2: "Módulo 2", m3: "Módulo 3", m4: "Módulo 4",
-    m5: "Módulo 5", m6: "Módulo 6", m7: "Módulo 7", m8: "Módulo 8",
-    evaluacion: "Evaluación", referencia: "Referencia",
+    general: "Generalidades", normativa: "Normativa", gestion: "Gestión",
+    contaminacion: "Contaminación", inspecciones: "Inspecciones", bps: "Buenas prácticas",
+    seguridad: "Plan de seguridad", sst: "Salud y seguridad",
+    circular: "Circular 0234/2026", faq: "Preguntas", referencia: "Referencia",
   };
   function pintarToc() {
     const toc = $("#toc");
     const grupos = new Map();
+    const ORDEN = ["general","normativa","gestion","contaminacion","inspecciones","bps","seguridad","sst","circular","faq","referencia"];
     deck.filter(d => d.pasa).forEach(d => {
       if (!grupos.has(d.cat)) grupos.set(d.cat, []);
       grupos.get(d.cat).push(d);
     });
     toc.innerHTML = "";
-    for (const [cat, items] of grupos) {
+    const ordenados = [...grupos.entries()].sort((a, b) => ORDEN.indexOf(a[0]) - ORDEN.indexOf(b[0]));
+    for (const [cat, items] of ordenados) {
       const a = document.createElement("a");
       a.href = "#" + items[0].id;
       a.innerHTML = `<span>${NOMBRES[cat] || cat}</span><span>${items.length}</span>`;
@@ -1681,6 +1681,7 @@ Ministerio entregue las precisiones y los instrumentos ajustados.</p>
 
   /* ---------- arranque ---------- */
   buscar("");
+  if (innerWidth < 700) input.placeholder = "Busca: cloro, pH, sellos, plan de seguridad…";
   const rapida = byId.get("respuestas-rapidas");
   if (rapida) setOpen(rapida, true);
   if (location.hash) {

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="dark">
+<html lang="es" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Curso de Manejo Administrativo de Piscinas · Guía interactiva</title>
-<meta name="description" content="Guía interactiva del Curso de Manejo Administrativo de Piscinas (Alfa Consultores): normativa, 8 módulos, datos clave, 60 preguntas con respuesta y circular de la Resolución 0234 de 2026. Con buscador.">
+<title>Guía práctica de manejo de piscinas · consulta y auditoría</title>
+<meta name="description" content="Guía práctica de manejo de piscinas: normativa, operación, buenas prácticas sanitarias, IRAPI, sellos, plan de seguridad, preguntas frecuentes y la circular sobre la Resolución 0234 de 2026. Con buscador.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏊</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -119,15 +119,15 @@ main{min-width:0}
   padding:6px 9px; border-radius:7px; white-space:nowrap; border:1px solid transparent}
 .b-normativa{background:rgba(167,139,250,.16); color:#c4b5fd; border-color:rgba(167,139,250,.35)}
 .b-circular{background:rgba(251,191,36,.16); color:#fcd34d; border-color:rgba(251,191,36,.38)}
-.b-m1,.b-m2,.b-m3,.b-m4,.b-m5,.b-m6,.b-m7,.b-m8{background:rgba(56,189,248,.14); color:#7dd3fc; border-color:rgba(56,189,248,.32)}
-.b-evaluacion{background:rgba(52,211,153,.14); color:#6ee7b7; border-color:rgba(52,211,153,.32)}
+.b-general,.b-gestion,.b-contaminacion,.b-inspecciones,.b-bps,.b-seguridad,.b-sst{background:rgba(56,189,248,.14); color:#7dd3fc; border-color:rgba(56,189,248,.32)}
+.b-faq{background:rgba(52,211,153,.14); color:#6ee7b7; border-color:rgba(52,211,153,.32)}
 .b-referencia{background:rgba(148,163,184,.14); color:#cbd5e1; border-color:rgba(148,163,184,.30)}
-html[data-theme="light"] .b-m1,html[data-theme="light"] .b-m2,html[data-theme="light"] .b-m3,
-html[data-theme="light"] .b-m4,html[data-theme="light"] .b-m5,html[data-theme="light"] .b-m6,
-html[data-theme="light"] .b-m7,html[data-theme="light"] .b-m8{color:#0369a1}
+html[data-theme="light"] .b-general,html[data-theme="light"] .b-gestion,html[data-theme="light"] .b-contaminacion,
+html[data-theme="light"] .b-inspecciones,html[data-theme="light"] .b-bps,html[data-theme="light"] .b-seguridad,
+html[data-theme="light"] .b-sst{color:#0369a1}
 html[data-theme="light"] .b-normativa{color:#6d28d9}
 html[data-theme="light"] .b-circular{color:#a16207}
-html[data-theme="light"] .b-evaluacion{color:#047857}
+html[data-theme="light"] .b-faq{color:#047857}
 html[data-theme="light"] .b-referencia{color:#334155}
 .chev{color:var(--dim2); transition:transform .25s; font-size:20px; line-height:1}
 .card.open .chev{transform:rotate(180deg)}
@@ -189,7 +189,8 @@ footer b{color:var(--dim)}
   .shell{grid-template-columns:1fr}
   aside{display:none}
   .hero{padding:36px 0 10px}
-  .card-head{padding:15px}
+  .card-head{padding:15px; gap:10px}
+  .card-head h2{font-size:15.5px}
   .card-body{padding:0 16px 20px}
   .snip{padding:0 16px 14px}
 }
@@ -208,19 +209,20 @@ footer b{color:var(--dim)}
 
 <div class="wrap">
   <header class="hero">
-    <span class="kicker">🏊 Alfa Consultores · Curso certificado</span>
-    <h1>Manejo Administrativo de <em>Piscinas</em></h1>
-    <p class="lead">Toda la información del curso en un solo lugar: normativa, los 8 módulos, los datos que
-      más preguntan, las 60 preguntas de los talleres y del examen, y la circular de la Resolución 0234 de
-      2026. Escribe una palabra o una pregunta y la guía te responde.</p>
+    <span class="kicker">🏊 Guía práctica · instalaciones acuáticas</span>
+    <h1>Manejo de <em>piscinas</em></h1>
+    <p class="lead">Normativa, operación, buenas prácticas sanitarias y seguridad, explicadas para el
+      trabajo diario del administrador y del piscinero. Incluye las preguntas que más se hacen y la
+      circular vigente sobre la Resolución 0234 de 2026. Escribe una palabra o una pregunta y la guía te
+      responde.</p>
     <div class="stats">
-      <a class="stat" href="cerro-azul.html" style="text-decoration:none;border-color:rgba(56,189,248,.45)">
-        🏊 <b>Piscina Cerro Azul</b> · ficha técnica y auditoría →
-      </a>
-      <span class="stat"><span class="dot"></span><b>45/45</b> nota final</span>
-      <span class="stat"><b>8</b> módulos</span>
-      <span class="stat"><b>60</b> preguntas resueltas</span>
+      <span class="stat"><span class="dot"></span><b>9</b> temas</span>
+      <span class="stat"><b>60</b> preguntas frecuentes</span>
       <span class="stat"><b>1</b> circular 2026</span>
+      <span class="stat"><b>Datos</b> y tablas de referencia</span>
+      <a class="stat" href="cerro-azul.html" style="text-decoration:none;border-color:rgba(56,189,248,.45)">
+        🏊 <b>Piscina Cerro Azul</b> · ficha y auditoría →
+      </a>
     </div>
   </header>
 
@@ -267,10 +269,9 @@ footer b{color:var(--dim)}
   </div>
 
   <footer>
-    <p><b>Guía interactiva del Curso de Manejo Administrativo de Piscinas</b> — Alfa Consultores Profesionales ·
-      contenido del aula (8 módulos), banco de preguntas del curso y Circular 2026090000180 de la Gobernación
-      de Antioquia sobre la Resolución 0234 de 2026.</p>
-    <p>Documento de estudio. No sustituye la norma oficial ni el acta de inspección vigente.</p>
+    <p><b>Guía práctica de manejo de piscinas</b> — normativa, operación, buenas prácticas sanitarias y
+      seguridad, con la Circular 2026090000180 de la Gobernación de Antioquia sobre la Resolución 0234 de 2026.</p>
+    <p>Documento de consulta. No sustituye la norma oficial ni el acta de inspección vigente.</p>
   </footer>
 </div>
 
@@ -463,20 +464,22 @@ footer b{color:var(--dim)}
 
   /* ---------- índice lateral ---------- */
   const NOMBRES = {
-    normativa: "Normativa", circular: "Circular 0234/2026",
-    m1: "Módulo 1", m2: "Módulo 2", m3: "Módulo 3", m4: "Módulo 4",
-    m5: "Módulo 5", m6: "Módulo 6", m7: "Módulo 7", m8: "Módulo 8",
-    evaluacion: "Evaluación", referencia: "Referencia",
+    general: "Generalidades", normativa: "Normativa", gestion: "Gestión",
+    contaminacion: "Contaminación", inspecciones: "Inspecciones", bps: "Buenas prácticas",
+    seguridad: "Plan de seguridad", sst: "Salud y seguridad",
+    circular: "Circular 0234/2026", faq: "Preguntas", referencia: "Referencia",
   };
   function pintarToc() {
     const toc = $("#toc");
     const grupos = new Map();
+    const ORDEN = ["general","normativa","gestion","contaminacion","inspecciones","bps","seguridad","sst","circular","faq","referencia"];
     deck.filter(d => d.pasa).forEach(d => {
       if (!grupos.has(d.cat)) grupos.set(d.cat, []);
       grupos.get(d.cat).push(d);
     });
     toc.innerHTML = "";
-    for (const [cat, items] of grupos) {
+    const ordenados = [...grupos.entries()].sort((a, b) => ORDEN.indexOf(a[0]) - ORDEN.indexOf(b[0]));
+    for (const [cat, items] of ordenados) {
       const a = document.createElement("a");
       a.href = "#" + items[0].id;
       a.innerHTML = `<span>${NOMBRES[cat] || cat}</span><span>${items.length}</span>`;
@@ -555,6 +558,7 @@ footer b{color:var(--dim)}
 
   /* ---------- arranque ---------- */
   buscar("");
+  if (innerWidth < 700) input.placeholder = "Busca: cloro, pH, sellos, plan de seguridad…";
   const rapida = byId.get("respuestas-rapidas");
   if (rapida) setOpen(rapida, true);
   if (location.hash) {
